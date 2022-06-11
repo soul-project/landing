@@ -63,7 +63,7 @@ export default function CTAForm({
               disabled={isSuccess}
               leftIcon={isSuccess ? <CheckCircleIcon /> : undefined}
             >
-              {isSuccess ? "Success" : "Join"}
+              {isSuccess ? "Success" : "Join us"}
             </Button>
           </Stack>
         </FormControl>
