@@ -1,6 +1,7 @@
 import { Box, Stack } from "@chakra-ui/react";
 import { NextPage } from "next";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import Footer from "src/components/Footer";
 import Head from "src/components/Head";
@@ -12,6 +13,7 @@ import Logo from "../../public/logo.png";
 
 const Home: NextPage = () => {
   const { isSubmitting, isSuccess, postNewWaitlist } = useWaitlist();
+  const refId = useRouter().query.ref_id?.toString();
 
   return (
     <div>
@@ -27,7 +29,7 @@ const Home: NextPage = () => {
             <CTAForm
               isSuccess={isSuccess}
               isSubmitting={isSubmitting}
-              submitWaitlist={(email) => postNewWaitlist(email)}
+              submitWaitlist={(email) => postNewWaitlist(email, refId)}
             />
           </Stack>
 

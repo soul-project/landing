@@ -7,7 +7,7 @@ export default function Footer() {
         <Box margin="16px 0px" padding="8px 16px" width="100%">
           <Stack direction={["column", "row"]} gap={4} justifyContent="center">
             <Link
-              href="https://github.com/soul-project/login-portal"
+              href="https://github.com/soul-project/landing"
               target="_blank"
               whiteSpace="nowrap"
             >
@@ -28,7 +28,7 @@ export default function Footer() {
               Contact me
             </Link>
           </Stack>
-          <Text textAlign={["left", "center"]} mt={[8, 4]}>
+          <Text textAlign={["left", "center"]} mt={[8, 4]} fontWeight="light">
             Copyright © {new Date().getFullYear()} Soul Network.
           </Text>
         </Box>
