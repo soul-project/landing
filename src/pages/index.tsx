@@ -54,12 +54,21 @@ const Home: NextPage = () => {
     <div>
       <Head />
       <Page>
-        <Stack justifyContent="center" alignItems="center" direction="row">
+        <Stack
+          justifyContent="center"
+          alignItems="center"
+          direction="row"
+          margin={["0px auto", "0px auto", ""]}
+        >
           <Stack flex="1 1 0" direction="column" spacing={4}>
-            <Text fontSize="4xl" fontWeight="bold">
-              Join the waitlist today!
+            <Text
+              fontSize="4xl"
+              fontWeight="bold"
+              textAlign={["center", "center", "left"]}
+            >
+              Develop with us today!
             </Text>
-            <Text maxW="500px">
+            <Text maxW="500px" textAlign={["center", "center", "left"]}>
               Soul is a user authentication and identity provider built for a
               decentralized social media eco-system.
             </Text>
@@ -67,7 +76,11 @@ const Home: NextPage = () => {
               <FormControl
                 isInvalid={!!formik.errors.email && formik.touched.email}
               >
-                <Stack direction="row">
+                <Stack
+                  direction="row"
+                  justifyContent={["center", "center", "left"]}
+                  mt={[4, 4, 0]}
+                >
                   <Box>
                     <Input
                       id="email"
@@ -89,14 +102,14 @@ const Home: NextPage = () => {
                     disabled={isSuccess}
                     leftIcon={isSuccess ? <CheckCircleIcon /> : undefined}
                   >
-                    {isSuccess ? "Success" : "Submit"}
+                    {isSuccess ? "Success" : "Join"}
                   </Button>
                 </Stack>
               </FormControl>
             </form>
           </Stack>
 
-          <Box flex="1 1 0">
+          <Box flex="1 1 0" display={["none", "none", "inline-block"]}>
             <Image src={Logo} alt="Logo" placeholder="blur" />
           </Box>
         </Stack>
