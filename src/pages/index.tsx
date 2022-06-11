@@ -1,5 +1,5 @@
 import { Box, Stack } from "@chakra-ui/react";
-import type { NextPage } from "next";
+import { NextPage } from "next";
 import Image from "next/image";
 
 import Footer from "src/components/Footer";
@@ -7,6 +7,7 @@ import Head from "src/components/Head";
 import Page from "src/components/Page";
 import CTAForm from "src/components/index/CTAForm";
 import { useWaitlist } from "src/hooks/useWaitlist";
+
 import Logo from "../../public/logo.png";
 
 const Home: NextPage = () => {

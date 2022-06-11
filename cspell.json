@@ -1,0 +1,19 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "allowCompoundWords": true,
+  "dictionaries": [
+    "en_US",
+    "ruby",
+    "typescript",
+    "html",
+    "css",
+    "npm",
+    "companies",
+    "softwareTerms"
+  ],
+  "ignorePaths": [],
+  "flagWords": [],
+  // List of ignored words to avoid checking.
+  "words": ["waitlist", "formik"]
+}
