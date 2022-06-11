@@ -13,6 +13,7 @@ import type { NextPage } from "next";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import Image from "next/image";
+import { CheckCircleIcon } from "@chakra-ui/icons";
 
 import Footer from "src/components/Footer";
 import Head from "src/components/Head";
@@ -21,6 +22,7 @@ import Logo from "../../public/logo.png";
 
 const Home: NextPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const formik = useFormik({
     initialValues: { email: "" },
@@ -29,6 +31,7 @@ const Home: NextPage = () => {
       console.log("🚀 ~ file: index.tsx ~ line 23 ~ data", data);
       setTimeout(() => {
         setIsSubmitting(false);
+        setIsSuccess(true);
       }, 1000);
     },
     validationSchema: Yup.object({ email: Yup.string().email().required() }),
@@ -74,14 +77,19 @@ const Home: NextPage = () => {
                       placeholder="Your email"
                       aria-label="Email input"
                       variant="filled"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || isSuccess}
                     />
                     {formik.errors.email && (
                       <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
                     )}
                   </Box>
-                  <Button type="submit" isLoading={isSubmitting}>
-                    Submit
+                  <Button
+                    type="submit"
+                    isLoading={isSubmitting}
+                    disabled={isSuccess}
+                    leftIcon={isSuccess ? <CheckCircleIcon /> : undefined}
+                  >
+                    {isSuccess ? "Success" : "Submit"}
                   </Button>
                 </Stack>
               </FormControl>
