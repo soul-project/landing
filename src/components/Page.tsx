@@ -1,5 +1,12 @@
+import { Box } from "@chakra-ui/react";
 import React from "react";
 
 export default function Page({ children }: React.PropsWithChildren<{}>) {
-  return <main>{children}</main>;
+  return (
+    <main>
+      <Box minHeight="100vh" padding="0px 64px" display="flex">
+        {children}
+      </Box>
+    </main>
+  );
 }
