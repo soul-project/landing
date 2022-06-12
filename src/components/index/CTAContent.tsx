@@ -8,14 +8,14 @@ export default function CTAContent() {
         fontWeight="bold"
         textAlign={["center", "center", "left"]}
       >
-        Start your journey with us today!
+        Start your journey with us today! 🎉
       </Text>
       <Text maxW="500px" textAlign={["center", "center", "left"]}>
         Soul is a user authentication and identity provider built for a
-        decentralized social media eco-system. <strong>Join us</strong> now by
-        registering, and we&apos;ll keep in touch.
+        decentralized social media eco-system 🤲. <strong>Join us</strong> now
+        by registering, and we&apos;ll keep in touch via email.
       </Text>
-      <p>
+      <Text textAlign={["center", "center", "left"]}>
         <Link
           href="https://login.soul-network.com/register"
           _hover={{ textDecoration: "initial" }}
@@ -23,7 +23,7 @@ export default function CTAContent() {
         >
           <Button type="button">Join us</Button>
         </Link>
-      </p>
+      </Text>
     </>
   );
 }
