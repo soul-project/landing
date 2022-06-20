@@ -33,7 +33,11 @@ const Home: NextPage = () => {
             <CTAContent username={session?.user.username} />
           </Stack>
 
-          <Box flex="1 1 0" display={["none", "none", "inline-block"]}>
+          <Box
+            flex="1 1 0"
+            display={["none", "none", "inline-block"]}
+            maxWidth="620px"
+          >
             <Image src={Logo} alt="Soul Logo" placeholder="blur" />
           </Box>
         </Stack>
