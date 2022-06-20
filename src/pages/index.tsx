@@ -1,6 +1,6 @@
 import { Box, Stack } from "@chakra-ui/react";
-import { signIn, signOut, getSession } from "next-auth/react";
-import { Session } from "next-auth";
+import { signIn, signOut, getSession, useSession } from "next-auth/react";
+import { useEffect } from "react";
 import { NextPage } from "next";
 import Image from "next/image";
 
@@ -19,7 +19,15 @@ export async function getServerSideProps(ctx: any) {
   };
 }
 
-const Home: NextPage<{ session: Session | null }> = ({ session }) => {
+const Home: NextPage = () => {
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session?.error === "RefreshAccessTokenError") {
+      signOut();
+    }
+  }, [session]);
+
   return (
     <div>
       <Head />
