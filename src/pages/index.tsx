@@ -1,5 +1,6 @@
 import { Box, Stack } from "@chakra-ui/react";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signIn, signOut, getSession } from "next-auth/react";
+import { Session } from "next-auth";
 import { NextPage } from "next";
 import Image from "next/image";
 
@@ -11,9 +12,14 @@ import NavBar from "src/components/NavBar";
 
 import Logo from "../../public/logo.png";
 
-const Home: NextPage = () => {
-  const { data: session, status } = useSession();
+export async function getServerSideProps(ctx: any) {
+  const session = await getSession(ctx);
+  return {
+    props: { session },
+  };
+}
 
+const Home: NextPage<{ session: Session | null }> = ({ session }) => {
   return (
     <div>
       <Head />
@@ -21,7 +27,7 @@ const Home: NextPage = () => {
         <NavBar
           onSignIn={() => signIn("soul")}
           onSignOut={signOut}
-          status={status}
+          isSignedIn={!!session}
         />
         <Stack
           justifyContent="center"

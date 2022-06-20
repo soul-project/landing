@@ -1,14 +1,13 @@
 import { Button, HStack } from "@chakra-ui/react";
 
-export default function NavBar({ onSignIn, status, onSignOut }: Props) {
+export default function NavBar({ onSignIn, isSignedIn, onSignOut }: Props) {
   return (
     <HStack justifyContent="flex-end" padding="32px 0px">
       <Button
         variant="link"
-        onClick={() => (status === "authenticated" ? onSignOut() : onSignIn())}
-        isLoading={status === "loading"}
+        onClick={() => (isSignedIn ? onSignOut() : onSignIn())}
       >
-        {status === "authenticated" ? "Logout" : "Login"}
+        {isSignedIn ? "Logout" : "Login"}
       </Button>
     </HStack>
   );
@@ -17,5 +16,5 @@ export default function NavBar({ onSignIn, status, onSignOut }: Props) {
 type Props = {
   onSignIn: () => void;
   onSignOut: () => void;
-  status: "authenticated" | "loading" | "unauthenticated";
+  isSignedIn: boolean;
 };
