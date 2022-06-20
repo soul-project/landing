@@ -8,6 +8,7 @@ export default function Page({ children }: React.PropsWithChildren<{}>) {
         minHeight="100vh"
         padding={["0px 16px", "0px 32px", "0px 64px"]}
         display="flex"
+        flexDirection="column"
       >
         {children}
       </Box>
