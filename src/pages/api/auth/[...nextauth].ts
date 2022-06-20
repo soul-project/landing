@@ -39,8 +39,6 @@ async function refreshAccessToken(token: any) {
   }
 
   try {
-    // eslint-disable-next-line no-console
-    console.log("refreshing token with server...");
     const refreshedTokens = await getNewTokenFromServer(token.refreshToken);
 
     const newToken = {
