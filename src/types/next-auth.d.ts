@@ -1,0 +1,32 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import NextAuth from "next-auth";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { JWT } from "next-auth/jwt";
+
+interface SoulUser {
+  id: number;
+  email: string;
+  isActive: boolean;
+  username: string;
+  userHandle: string;
+}
+
+declare module "next-auth" {
+  interface Session {
+    user: SoulUser;
+  }
+
+  interface Profile extends SoulUser {}
+
+  interface User extends SoulUser {}
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    user: SoulUser;
+    account: {
+      expires_at: number;
+    };
+    accessTokenExpires: number;
+  }
+}
