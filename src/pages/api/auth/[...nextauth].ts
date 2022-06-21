@@ -34,8 +34,9 @@ const getNewTokenFromServer = async (
 };
 
 async function refreshAccessToken(token: any) {
-  if (tokenCache.get(token.accessToken)) {
-    return tokenCache.get(token.accessToken);
+  const existingToken = tokenCache.get(token.refreshToken);
+  if (existingToken) {
+    return existingToken;
   }
 
   try {
@@ -47,7 +48,7 @@ async function refreshAccessToken(token: any) {
       accessTokenExpires: Date.now() + refreshedTokens.expiresIn * 1000,
       refreshToken: refreshedTokens.refreshToken ?? token.refreshToken,
     };
-    tokenCache.set(token.accessToken, newToken);
+    tokenCache.set(token.refreshToken, newToken);
 
     return newToken;
   } catch (error) {
@@ -86,11 +87,11 @@ export default NextAuth({
     async jwt({ token, user, account }) {
       // Initial sign in
       if (account && user) {
-        const expiresAt = account.expires_at ?? 900;
+        const expiresAt = account.expires_at ?? Date.now() + 900 * 1000;
 
         return {
           accessToken: account.access_token,
-          accessTokenExpires: Date.now() + expiresAt * 1000,
+          accessTokenExpires: expiresAt,
           refreshToken: account.refresh_token,
           user,
         };
