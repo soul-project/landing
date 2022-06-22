@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import NodeCache from "node-cache";
 
 const CLIENT_ID = 2;
-const tokenCache = new NodeCache({ stdTTL: 3600, checkperiod: 120 });
+const tokenCache = new NodeCache({ stdTTL: 86400, checkperiod: 3600 });
 
 const getNewTokenFromServer = async (
   refreshToken: string
