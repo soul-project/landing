@@ -95,14 +95,14 @@ export default NextAuth({
 
         return {
           accessToken: account.access_token,
-          accessTokenExpires: expiresAt,
+          accessTokenExpires: expiresAt * 1000,
           refreshToken: account.refresh_token,
           user,
         };
       }
 
       // Return previous token if the access token has not expired yet
-      if (Date.now() < token.accessTokenExpires * 1000) {
+      if (Date.now() < token.accessTokenExpires) {
         return token;
       }
 
