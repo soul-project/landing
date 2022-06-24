@@ -9,6 +9,9 @@ on:
 
 jobs:
   build:
+    env:
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+
     runs-on: ubuntu-latest
 
     steps:
@@ -24,4 +27,4 @@ jobs:
       - name: Lint code
         run: npm run lint
 
-      - run: CI=true npm run build
+      - run: CI=true SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN npm run build
