@@ -6,6 +6,17 @@
     "plugin:@cspell/recommended"
   ],
   "parser": "@typescript-eslint/parser",
+  "overrides": [
+    {
+      "files": ["**/*.js"],
+      "parserOptions": {
+        "project": null
+      },
+      "rules": {
+        "deprecation/deprecation": "off"
+      }
+    }
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true

@@ -1,8 +1,9 @@
 import NextAuth from "next-auth";
 import NodeCache from "node-cache";
+import * as Sentry from "@sentry/nextjs";
 
 const CLIENT_ID = 2;
-const tokenCache = new NodeCache({ stdTTL: 86400, checkperiod: 3600 });
+const tokenCache = new NodeCache({ stdTTL: 120, checkperiod: 120 });
 
 const getNewTokenFromServer = async (
   refreshToken: string
@@ -41,17 +42,20 @@ async function refreshAccessToken(token: any) {
 
   try {
     const refreshedTokens = await getNewTokenFromServer(token.refreshToken);
+    const expiresAt = Date.now() + refreshedTokens.expiresIn * 1000;
 
     const newToken = {
       ...token,
       accessToken: refreshedTokens.accessToken,
-      accessTokenExpires: Date.now() + refreshedTokens.expiresIn * 1000,
+      accessTokenExpires: expiresAt,
       refreshToken: refreshedTokens.refreshToken ?? token.refreshToken,
     };
     tokenCache.set(token.refreshToken, newToken);
 
     return newToken;
   } catch (error) {
+    Sentry.captureException(error);
+
     return {
       ...token,
       error: "RefreshAccessTokenError",
