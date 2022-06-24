@@ -102,7 +102,7 @@ export default NextAuth({
       }
 
       // Return previous token if the access token has not expired yet
-      if (Date.now() < token.accessTokenExpires) {
+      if (Date.now() < token.accessTokenExpires * 1000) {
         return token;
       }
 
