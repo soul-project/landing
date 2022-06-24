@@ -91,7 +91,9 @@ export default NextAuth({
     async jwt({ token, user, account }) {
       // Initial sign in
       if (account && user) {
-        const expiresAt = account.expires_at ?? Date.now() + 900 * 1000;
+        const expiresAt = account.expires_at
+          ? account.expires_at * 1000
+          : Date.now() + 900 * 1000;
 
         return {
           accessToken: account.access_token,
@@ -102,7 +104,7 @@ export default NextAuth({
       }
 
       // Return previous token if the access token has not expired yet
-      if (Date.now() < token.accessTokenExpires * 1000) {
+      if (Date.now() < token.accessTokenExpires) {
         return token;
       }
 
