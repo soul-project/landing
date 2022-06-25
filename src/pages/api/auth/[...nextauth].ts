@@ -1,5 +1,4 @@
 import NextAuth from "next-auth";
-import * as Sentry from "@sentry/nextjs";
 
 const CLIENT_ID = 2;
 
@@ -46,8 +45,6 @@ async function refreshAccessToken(token: any) {
 
     return newToken;
   } catch (error) {
-    Sentry.captureException(error);
-
     return {
       ...token,
       error: "RefreshAccessTokenError",

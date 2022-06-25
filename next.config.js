@@ -3,7 +3,7 @@ const { withSentryConfig } = require("@sentry/nextjs");
 
 const moduleExports = () => {
   const nextConfig = {
-    reactStrictMode: false,
+    reactStrictMode: true,
   };
   return nextConfig;
 };
