@@ -1,3 +1,4 @@
+import { CheckIcon, CopyIcon } from "@chakra-ui/icons";
 import {
   Modal,
   ModalOverlay,
@@ -29,14 +30,14 @@ export default function AccessTokenModal({
         <ModalBody>
           <InputGroup size="md">
             <Input
-              pr="4.5rem"
+              pr="66px"
               type="text"
               value={accessToken}
               contentEditable={false}
             />
             <InputRightElement width="4.5rem">
               <Button h="1.75rem" size="sm" onClick={onCopy}>
-                {hasCopied ? "Copied" : "Copy"}
+                {hasCopied ? <CheckIcon /> : <CopyIcon />}
               </Button>
             </InputRightElement>
           </InputGroup>
