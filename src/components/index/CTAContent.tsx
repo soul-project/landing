@@ -1,6 +1,9 @@
 import { Button, Text, Link, Box, Stack } from "@chakra-ui/react";
 
-export default function CTAContent({ username }: Props) {
+export default function CTAContent({
+  username,
+  onShowAccessTokenModal,
+}: Props) {
   return (
     <>
       <Box
@@ -72,6 +75,11 @@ export default function CTAContent({ username }: Props) {
         >
           <Button type="button">Integrate with us!</Button>
         </Link>
+        {username && (
+          <Button type="button" onClick={onShowAccessTokenModal}>
+            Access Token
+          </Button>
+        )}
       </Stack>
     </>
   );
@@ -79,4 +87,5 @@ export default function CTAContent({ username }: Props) {
 
 type Props = {
   username?: string;
+  onShowAccessTokenModal: () => void;
 };
