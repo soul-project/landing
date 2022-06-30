@@ -2,9 +2,12 @@
 import NextAuth from "next-auth";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { JWT } from "next-auth/jwt";
-
 interface SoulUser {
   id: number;
+  email: string;
+  isActive: boolean;
+  username: string;
+  userHandle: string;
 }
 
 declare module "next-auth" {
@@ -26,6 +29,9 @@ declare module "next-auth/jwt" {
     account: {
       expires_at: number;
     };
+    accessToken: string;
+    refreshToken: string;
     accessTokenExpires: number;
+    error?: string;
   }
 }
