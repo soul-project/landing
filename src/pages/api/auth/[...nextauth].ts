@@ -12,24 +12,23 @@ const getNewTokenFromServer = async (
   refreshToken: string;
 }> => {
   const url = "https://api.soul-network.com/v1/auth/refresh";
-  const req = await fetch(url, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify({
+  const { data } = await axios.post<{
+    access_token: string;
+    expires_in: number;
+    refresh_token: string;
+  }>(
+    url,
+    {
       refresh_token: refreshToken,
       client_id: CLIENT_ID,
-    }),
-  });
-
-  const res = await req.json();
-  if (!req.ok) throw res;
+    },
+    { headers: { "Content-Type": "application/json" } }
+  );
 
   return {
-    accessToken: res.access_token,
-    expiresIn: res.expires_in,
-    refreshToken: res.refresh_token,
+    accessToken: data.access_token,
+    expiresIn: data.expires_in,
+    refreshToken: data.refresh_token,
   };
 };
 
