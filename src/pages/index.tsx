@@ -18,7 +18,7 @@ export async function getServerSideProps(ctx: any) {
   const session = await getSession(ctx);
 
   if (!session) {
-    return { props: { session } };
+    return { props: {} };
   }
 
   try {
@@ -41,7 +41,7 @@ export async function getServerSideProps(ctx: any) {
       },
     };
   } catch (_err) {
-    return { props: { session } };
+    return { props: {} };
   }
 }
 
