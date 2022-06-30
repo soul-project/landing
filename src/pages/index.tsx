@@ -3,6 +3,7 @@ import { signIn, signOut, getSession, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { NextPage } from "next";
 import Image from "next/image";
+import axios from "axios";
 
 import Footer from "src/components/Footer";
 import Head from "src/components/Head";
@@ -15,12 +16,32 @@ import Logo from "../../public/logo.png";
 
 export async function getServerSideProps(ctx: any) {
   const session = await getSession(ctx);
+
+  if (!session) {
+    return { props: { session } };
+  }
+
+  const { data: user } = await axios.get<{
+    id: number;
+    username: string;
+    user_handle: string;
+  }>("https://api.soul-network.com/v1/users/me", {
+    headers: { Authorization: `Bearer ${session.accessToken}` },
+  });
+
   return {
-    props: { session },
+    props: {
+      session,
+      user: {
+        id: user.id,
+        username: user.username,
+        userHandle: user.user_handle,
+      },
+    },
   };
 }
 
-const Home: NextPage = () => {
+const Home: NextPage<Props> = ({ user }) => {
   const { data: session } = useSession();
   const {
     isOpen: isAccessTokenModalOpen,
@@ -56,7 +77,7 @@ const Home: NextPage = () => {
         >
           <Stack flex="1 1 0" direction="column" spacing={4}>
             <CTAContent
-              username={session?.user.username}
+              username={user?.username}
               onShowAccessTokenModal={onOpenAccessTokenModal}
             />
           </Stack>
@@ -76,3 +97,11 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+type Props = {
+  user?: {
+    id: number;
+    username: string;
+    userHandle: string;
+  };
+};
