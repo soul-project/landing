@@ -18,27 +18,31 @@ export async function getServerSideProps(ctx: any) {
   const session = await getSession(ctx);
 
   if (!session) {
-    return { props: { session } };
+    return { props: {} };
   }
 
-  const { data: user } = await axios.get<{
-    id: number;
-    username: string;
-    user_handle: string;
-  }>("https://api.soul-network.com/v1/users/me", {
-    headers: { Authorization: `Bearer ${session.accessToken}` },
-  });
+  try {
+    const { data: user } = await axios.get<{
+      id: number;
+      username: string;
+      user_handle: string;
+    }>("https://api.soul-network.com/v1/users/me", {
+      headers: { Authorization: `Bearer ${session.accessToken}` },
+    });
 
-  return {
-    props: {
-      session,
-      user: {
-        id: user.id,
-        username: user.username,
-        userHandle: user.user_handle,
+    return {
+      props: {
+        session,
+        user: {
+          id: user.id,
+          username: user.username,
+          userHandle: user.user_handle,
+        },
       },
-    },
-  };
+    };
+  } catch (_err) {
+    return { props: {} };
+  }
 }
 
 const Home: NextPage<Props> = ({ user }) => {
