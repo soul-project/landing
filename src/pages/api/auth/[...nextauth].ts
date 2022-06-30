@@ -66,13 +66,7 @@ export default NextAuth({
       clientId: String(CLIENT_ID),
       clientSecret: "secret",
       profile: (profile) => {
-        return {
-          id: profile.id,
-          email: profile.email,
-          isActive: profile.is_active,
-          username: profile.username,
-          userHandle: profile.user_handle,
-        };
+        return { id: profile.id };
       },
     },
   ],

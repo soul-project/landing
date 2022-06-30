@@ -5,10 +5,6 @@ import { JWT } from "next-auth/jwt";
 
 interface SoulUser {
   id: number;
-  email: string;
-  isActive: boolean;
-  username: string;
-  userHandle: string;
 }
 
 declare module "next-auth" {
@@ -19,7 +15,9 @@ declare module "next-auth" {
 
   interface Profile extends SoulUser {}
 
-  interface User extends SoulUser {}
+  interface User extends SoulUser {
+    id: number;
+  }
 }
 
 declare module "next-auth/jwt" {
