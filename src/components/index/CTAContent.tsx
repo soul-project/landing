@@ -39,15 +39,15 @@ export default function CTAContent({
       {username ? (
         <Text maxW="500px" textAlign={["center", "center", "left"]}>
           Soul is a user authentication and identity provider built for a
-          decentralized social media eco-system 🤲. We&apos;ll be in touch with
-          you shortly. In the meantime, check out our docs by clicking on{" "}
+          federated social media eco-system 🤲. We&apos;ll be in touch with you
+          shortly. In the meantime, check out our docs by clicking on{" "}
           <strong>&quot;Integrate with us!&quot;</strong> button below.
         </Text>
       ) : (
         <Text maxW="500px" textAlign={["center", "center", "left"]}>
           Soul is a user authentication and identity provider built for a
-          decentralized social media eco-system 🤲. <strong>Join us</strong> now
-          by registering, and we&apos;ll keep in touch via email.
+          federated social media eco-system 🤲. <strong>Join us</strong> now by
+          registering, and we&apos;ll keep in touch via email.
         </Text>
       )}
       <Stack direction="row" justifyContent={["center", "center", "left"]}>
