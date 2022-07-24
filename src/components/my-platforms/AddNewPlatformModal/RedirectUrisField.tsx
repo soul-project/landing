@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { FieldArray, Field, FieldProps } from "formik";
 
-import { FormValues } from "../form";
+import { FormValues, MAX_PLATFORM_REDIRECT_URIS } from "../form";
 
 export default function RedirectUrisField({ redirectUris }: Props) {
   return (
@@ -58,7 +58,7 @@ export default function RedirectUrisField({ redirectUris }: Props) {
               }}
             </Field>
           ))}
-          {redirectUris.length < 5 && (
+          {redirectUris.length < MAX_PLATFORM_REDIRECT_URIS && (
             <Button onClick={() => push("")}>Add more redirect uris</Button>
           )}
         </>

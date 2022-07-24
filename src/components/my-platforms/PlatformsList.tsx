@@ -1,5 +1,5 @@
 import React from "react";
-import { Spinner, VStack, Text } from "@chakra-ui/react";
+import { Spinner, VStack, Text, Center } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import { useQuery } from "react-query";
 
@@ -16,7 +16,12 @@ export default function PlatformsList() {
     getMyList(args)
   );
 
-  if (!myPlatformsList) return <Spinner />;
+  if (!myPlatformsList)
+    return (
+      <Center w="100%" h="100%">
+        <Spinner mt="100px" />
+      </Center>
+    );
 
   return (
     <VStack alignItems="flex-start" px="16px">
