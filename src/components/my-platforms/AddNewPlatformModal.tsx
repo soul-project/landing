@@ -15,7 +15,7 @@ import { Formik, Form } from "formik";
 import { useMutation, useQueryClient } from "react-query";
 import { useSession } from "next-auth/react";
 
-import { create, CreateArgs, getList } from "src/modules/platforms/actions";
+import { create, CreateArgs, getMyList } from "src/modules/platforms/actions";
 
 import RedirectUrisField from "./AddNewPlatformModal/RedirectUrisField";
 import PlatformNameField from "./AddNewPlatformModal/PlatformNameField";
@@ -60,7 +60,7 @@ export default function AddNewPlatformModal({ isOpen, onClose }: Props) {
       isClosable: true,
       position: "bottom-right",
     });
-    await queryClient.invalidateQueries(getList.key);
+    await queryClient.invalidateQueries(getMyList.key);
   };
 
   return (
