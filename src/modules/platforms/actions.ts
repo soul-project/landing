@@ -17,8 +17,8 @@ export const create = async ({
   );
 };
 
-type CreateArgs = {
+export type CreateArgs = {
   accessToken: string;
   name: string;
-  redirectUris: string;
+  redirectUris: string[];
 };

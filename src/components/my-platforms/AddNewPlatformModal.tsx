@@ -13,14 +13,26 @@ import {
 } from "@chakra-ui/react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-// import { useMutation } from "react-query";
+import { useMutation } from "react-query";
+import { useSession } from "next-auth/react";
+
+import { create, CreateArgs } from "src/modules/platforms/actions";
 
 import RedirectUrisField from "./AddNewPlatformModal/RedirectUrisField";
 import PlatformNameField from "./AddNewPlatformModal/PlatformNameField";
 
 export default function AddNewPlatformModal({ isOpen, onClose }: Props) {
   const toast = useToast();
-  // useMutation();
+  const { data: session } = useSession();
+
+  // TODO: Invalidate the query key once post is successful
+  const { mutateAsync: createPlatform, error } = useMutation<
+    any,
+    void,
+    CreateArgs
+  >((args) => create(args));
+
+  if (!session) return null;
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -31,18 +43,33 @@ export default function AddNewPlatformModal({ isOpen, onClose }: Props) {
         <Formik
           initialValues={{ name: "", redirectUris: [""] }}
           onSubmit={async (values, action) => {
-            // TODO: Implement a toast https://chakra-ui.com/docs/components/toast
-            // for error messages from the backend
-            toast({
-              title: "Platform created.",
-              description: `We've created your account for you. ${JSON.stringify(
-                values
-              )}`,
-              status: "success",
-              duration: 9000,
-              isClosable: true,
-              position: "bottom-right",
-            });
+            try {
+              await createPlatform({
+                accessToken: session.accessToken,
+                ...values,
+              });
+            } catch (err) {}
+
+            if (error) {
+              // TODO: Include some error message in the description especially the constraints
+              // or duplicate names (if we have)
+              toast({
+                title: "Platform creation failed.",
+                status: "error",
+                duration: 9000,
+                isClosable: true,
+                position: "bottom-right",
+              });
+            } else {
+              toast({
+                title: "Platform created.",
+                description: "We've created your account for you.",
+                status: "success",
+                duration: 9000,
+                isClosable: true,
+                position: "bottom-right",
+              });
+            }
             action.setSubmitting(false);
           }}
           validationSchema={Yup.object({
