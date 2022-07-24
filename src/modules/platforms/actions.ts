@@ -22,3 +22,7 @@ export type CreateArgs = {
   name: string;
   redirectUris: string[];
 };
+
+export const getList = async () => {};
+
+getList.key = "modules/platforms/getList";

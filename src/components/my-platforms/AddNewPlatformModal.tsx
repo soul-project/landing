@@ -12,10 +12,10 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { Formik, Form } from "formik";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useSession } from "next-auth/react";
 
-import { create, CreateArgs } from "src/modules/platforms/actions";
+import { create, CreateArgs, getList } from "src/modules/platforms/actions";
 
 import RedirectUrisField from "./AddNewPlatformModal/RedirectUrisField";
 import PlatformNameField from "./AddNewPlatformModal/PlatformNameField";
@@ -24,8 +24,8 @@ import { formSchema, FormValues } from "./form";
 export default function AddNewPlatformModal({ isOpen, onClose }: Props) {
   const toast = useToast();
   const { data: session } = useSession();
+  const queryClient = useQueryClient();
 
-  // TODO: Invalidate the query key once post is successful
   const { mutateAsync: createPlatform } = useMutation<any, void, CreateArgs>(
     (args) => create(args)
   );
@@ -60,6 +60,7 @@ export default function AddNewPlatformModal({ isOpen, onClose }: Props) {
       isClosable: true,
       position: "bottom-right",
     });
+    await queryClient.invalidateQueries(getList.key);
   };
 
   return (
