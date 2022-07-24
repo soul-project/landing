@@ -14,6 +14,8 @@ import {
 } from "@chakra-ui/react";
 import { FieldArray, Field, FieldProps } from "formik";
 
+import { FormValues } from "../form";
+
 export default function RedirectUrisField({ redirectUris }: Props) {
   return (
     <FieldArray name="redirectUris">
@@ -22,10 +24,7 @@ export default function RedirectUrisField({ redirectUris }: Props) {
           <FormLabel>Redirect Uris</FormLabel>
           {redirectUris.map((_redirectUri, index) => (
             <Field key={index} name={`redirectUris.${index}`}>
-              {({
-                field,
-                form,
-              }: FieldProps<string, { redirectUris: string[] }>) => {
+              {({ field, form }: FieldProps<string, FormValues>) => {
                 const errors = form.errors.redirectUris as string[] | undefined;
                 const touched = form.touched.redirectUris as
                   | boolean[]
