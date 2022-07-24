@@ -8,7 +8,7 @@ export default function NavBar({ onSignIn, isSignedIn, onSignOut }: Props) {
       {isSignedIn && <Link href="/my-platforms">My Platforms</Link>}
 
       <Button
-        variant="link"
+        variant="outline"
         onClick={() => (isSignedIn ? onSignOut() : onSignIn())}
       >
         {isSignedIn ? "Logout" : "Login"}
