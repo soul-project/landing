@@ -6,7 +6,7 @@ export default function Header({ onOpen }: Props) {
     <>
       <HStack w="100%" justifyContent="space-between" px="16px">
         <Text fontSize="3xl" fontWeight="bold">
-          My Platforms
+          My platforms
         </Text>
         <Button onClick={onOpen}>
           <AddIcon />

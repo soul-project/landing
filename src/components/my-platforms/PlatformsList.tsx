@@ -1,5 +1,18 @@
 import React from "react";
-import { Spinner, VStack, Text, Center } from "@chakra-ui/react";
+import {
+  Spinner,
+  Center,
+  TableContainer,
+  Table,
+  Th,
+  Thead,
+  Tr,
+  Tbody,
+  Td,
+  Button,
+  HStack,
+} from "@chakra-ui/react";
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { useSession } from "next-auth/react";
 import { useQuery } from "react-query";
 
@@ -24,10 +37,36 @@ export default function PlatformsList() {
     );
 
   return (
-    <VStack alignItems="flex-start" px="16px">
-      {myPlatformsList.platforms.map((platform) => (
-        <Text key={platform.id}>{platform.name}</Text>
-      ))}
-    </VStack>
+    <TableContainer w="100%">
+      <Table variant="simple" size="lg">
+        <Thead>
+          <Tr>
+            <Th isNumeric>id</Th>
+            <Th>name</Th>
+            <Th>platform handle</Th>
+            <Th textAlign="right">actions</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {myPlatformsList.platforms.map((platform, index) => (
+            <Tr key={platform.id}>
+              <Td isNumeric>{index + 1}</Td>
+              <Td>{platform.name}</Td>
+              <Td>{platform.nameHandle}</Td>
+              <Td w="100%">
+                <HStack justifyContent="flex-end">
+                  <Button>
+                    <EditIcon />
+                  </Button>
+                  <Button>
+                    <DeleteIcon color="red" />
+                  </Button>
+                </HStack>
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </TableContainer>
   );
 }

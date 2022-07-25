@@ -5,7 +5,7 @@ export default function NavBar({ onSignIn, isSignedIn, onSignOut }: Props) {
     <HStack justifyContent="flex-end" padding="32px 0px" spacing="16px">
       {isSignedIn && <Link href="/">Home</Link>}
 
-      {isSignedIn && <Link href="/my-platforms">My Platforms</Link>}
+      {isSignedIn && <Link href="/my-platforms">My platforms</Link>}
 
       <Button
         variant="outline"
