@@ -43,6 +43,8 @@ export default function PlatformsList() {
             <Th isNumeric>id</Th>
             <Th>name</Th>
             <Th>platform handle</Th>
+            <Th>created at</Th>
+            <Th>updated at</Th>
             <Th textAlign="right">actions</Th>
           </Tr>
         </Thead>
@@ -52,6 +54,8 @@ export default function PlatformsList() {
               <Td isNumeric>{index + 1}</Td>
               <Td>{platform.name}</Td>
               <Td>{platform.nameHandle}</Td>
+              <Td>{new Date(platform.createdAt).toLocaleString()}</Td>
+              <Td>{new Date(platform.updatedAt).toLocaleString()}</Td>
               <Td w="100%">
                 <Actions platformId={platform.id} />
               </Td>

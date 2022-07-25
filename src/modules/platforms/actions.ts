@@ -41,12 +41,14 @@ export const getMyList = async ({
       name: platform.name,
       nameHandle: platform.name_handle,
       id: platform.id,
+      createdAt: platform.created_at,
+      updatedAt: platform.updated_at,
     })),
     totalCount: data.total_count,
   };
 };
 
-getMyList.key = "modules/platforms/getList";
+getMyList.key = "modules/platforms/actions/getList";
 
 type GetMyListArgs = {
   accessToken: string;
@@ -56,6 +58,8 @@ type PlatformData = {
   id: number;
   name: string;
   name_handle: string;
+  created_at: string;
+  updated_at: string;
 };
 
 type PlatformListData = {
@@ -67,6 +71,8 @@ type Platform = {
   id: number;
   name: string;
   nameHandle: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
 type PlatformList = {
@@ -83,4 +89,42 @@ export const destroy = async ({ accessToken, platformId }: DestroyArgs) => {
 export type DestroyArgs = {
   accessToken: string;
   platformId: number;
+};
+
+export const getPlatform = async ({
+  accessToken,
+  platformId,
+}: GetPlatformArgs): Promise<PlatformFull> => {
+  const { data } = await axios.get<PlatformFullData>(
+    `${PLATFORMS_API}/${platformId}/full`,
+    { headers: { Authorization: `Bearer ${accessToken}` } }
+  );
+
+  return {
+    id: data.id,
+    name: data.name,
+    nameHandle: data.name_handle,
+    redirectUris: data.redirect_uris,
+  };
+};
+
+getPlatform.key = "modules/platforms/actions/getPlatform";
+
+type GetPlatformArgs = {
+  accessToken: string;
+  platformId: number;
+};
+
+type PlatformFullData = {
+  id: number;
+  name: string;
+  name_handle: string;
+  redirect_uris: string[];
+};
+
+type PlatformFull = {
+  id: number;
+  name: string;
+  nameHandle: string;
+  redirectUris: string[];
 };
