@@ -61,6 +61,7 @@ export default function AddNewPlatformModal({ isOpen, onClose }: Props) {
       position: "bottom-right",
     });
     await queryClient.invalidateQueries(getMyList.key);
+    onClose();
   };
 
   return (

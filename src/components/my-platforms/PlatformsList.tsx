@@ -9,14 +9,13 @@ import {
   Tr,
   Tbody,
   Td,
-  Button,
-  HStack,
 } from "@chakra-ui/react";
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { useSession } from "next-auth/react";
 import { useQuery } from "react-query";
 
 import { getMyList } from "src/modules/platforms/actions";
+
+import Actions from "./PlatformsList/Actions";
 
 export default function PlatformsList() {
   const { data: session } = useSession();
@@ -54,14 +53,7 @@ export default function PlatformsList() {
               <Td>{platform.name}</Td>
               <Td>{platform.nameHandle}</Td>
               <Td w="100%">
-                <HStack justifyContent="flex-end">
-                  <Button>
-                    <EditIcon />
-                  </Button>
-                  <Button>
-                    <DeleteIcon color="red" />
-                  </Button>
-                </HStack>
+                <Actions platformId={platform.id} />
               </Td>
             </Tr>
           ))}

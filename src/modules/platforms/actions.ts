@@ -73,3 +73,14 @@ type PlatformList = {
   totalCount: number;
   platforms: Platform[];
 };
+
+export const destroy = async ({ accessToken, platformId }: DestroyArgs) => {
+  return axios.delete(`${PLATFORMS_API}/${platformId}`, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+};
+
+export type DestroyArgs = {
+  accessToken: string;
+  platformId: number;
+};
