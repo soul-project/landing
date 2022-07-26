@@ -110,7 +110,7 @@ export const getPlatform = async ({
 
 getPlatform.key = "modules/platforms/actions/getPlatform";
 
-type GetPlatformArgs = {
+export type GetPlatformArgs = {
   accessToken: string;
   platformId: number;
 };

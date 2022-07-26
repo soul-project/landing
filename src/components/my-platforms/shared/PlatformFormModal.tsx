@@ -8,6 +8,7 @@ import {
   VStack,
   ModalFooter,
   Button,
+  Spinner,
 } from "@chakra-ui/react";
 import { Formik, Form } from "formik";
 
@@ -21,34 +22,39 @@ export default function PlatformFormModal({
   onClose,
   handleSubmit,
   initialValues,
+  title,
 }: Props) {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent bgColor="black" margin="auto 0px">
-        <ModalHeader>Create new platform</ModalHeader>
+        <ModalHeader>{title}</ModalHeader>
         <ModalCloseButton />
-        <Formik
-          initialValues={initialValues}
-          onSubmit={handleSubmit}
-          validationSchema={formSchema}
-        >
-          {({ values, isSubmitting }) => (
-            <Form>
-              <ModalBody>
-                <VStack spacing="16px" alignItems="flex-start">
-                  <PlatformNameField />
-                  <RedirectUrisField redirectUris={values.redirectUris} />
-                </VStack>
-              </ModalBody>
-              <ModalFooter>
-                <Button type="submit" isLoading={isSubmitting}>
-                  Submit
-                </Button>
-              </ModalFooter>
-            </Form>
-          )}
-        </Formik>
+        {initialValues ? (
+          <Formik
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            validationSchema={formSchema}
+          >
+            {({ values, isSubmitting }) => (
+              <Form>
+                <ModalBody>
+                  <VStack spacing="16px" alignItems="flex-start">
+                    <PlatformNameField />
+                    <RedirectUrisField redirectUris={values.redirectUris} />
+                  </VStack>
+                </ModalBody>
+                <ModalFooter>
+                  <Button type="submit" isLoading={isSubmitting}>
+                    Submit
+                  </Button>
+                </ModalFooter>
+              </Form>
+            )}
+          </Formik>
+        ) : (
+          <Spinner mt="30px" />
+        )}
       </ModalContent>
     </Modal>
   );
@@ -58,5 +64,6 @@ type Props = {
   isOpen: boolean;
   onClose: () => void;
   handleSubmit: (values: FormValues) => void;
-  initialValues: FormValues;
+  initialValues?: FormValues;
+  title: string;
 };

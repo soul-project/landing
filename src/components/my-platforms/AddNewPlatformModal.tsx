@@ -57,6 +57,7 @@ export default function AddNewPlatformModal({ isOpen, onClose }: Props) {
       isOpen={isOpen}
       handleSubmit={handleSubmit}
       onClose={onClose}
+      title="Create new platform"
     />
   );
 }
