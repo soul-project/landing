@@ -42,11 +42,9 @@ export default function AddNewPlatformModal({ isOpen, onClose }: Props) {
     }
   );
 
-  if (!session) return null;
-
   const handleSubmit = async (values: FormValues) => {
     await createPlatform({
-      accessToken: session.accessToken,
+      accessToken: session!.accessToken,
       ...values,
     });
   };
