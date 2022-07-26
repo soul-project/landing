@@ -14,7 +14,10 @@ import {
 } from "@chakra-ui/react";
 import { FieldArray, Field, FieldProps } from "formik";
 
-import { FormValues, MAX_PLATFORM_REDIRECT_URIS } from "../form";
+import {
+  FormValues,
+  MAX_PLATFORM_REDIRECT_URIS,
+} from "src/components/my-platforms/form";
 
 export default function RedirectUrisField({ redirectUris }: Props) {
   return (

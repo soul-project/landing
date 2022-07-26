@@ -1,25 +1,12 @@
 import React from "react";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  Button,
-  ModalFooter,
-  VStack,
-  useToast,
-} from "@chakra-ui/react";
-import { Formik, Form } from "formik";
+import { useToast } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "react-query";
 import { useSession } from "next-auth/react";
 
 import { create, CreateArgs, getMyList } from "src/modules/platforms/actions";
 
-import RedirectUrisField from "./AddNewPlatformModal/RedirectUrisField";
-import PlatformNameField from "./AddNewPlatformModal/PlatformNameField";
-import { formSchema, FormValues } from "./form";
+import { FormValues } from "./form";
+import PlatformFormModal from "./shared/PlatformFormModal";
 
 export default function AddNewPlatformModal({ isOpen, onClose }: Props) {
   const toast = useToast();
@@ -65,34 +52,12 @@ export default function AddNewPlatformModal({ isOpen, onClose }: Props) {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <ModalOverlay />
-      <ModalContent bgColor="black" margin="auto 0px">
-        <ModalHeader>Create new platform</ModalHeader>
-        <ModalCloseButton />
-        <Formik
-          initialValues={{ name: "", redirectUris: [""] }}
-          onSubmit={handleSubmit}
-          validationSchema={formSchema}
-        >
-          {({ values, isSubmitting }) => (
-            <Form>
-              <ModalBody>
-                <VStack spacing="16px" alignItems="flex-start">
-                  <PlatformNameField />
-                  <RedirectUrisField redirectUris={values.redirectUris} />
-                </VStack>
-              </ModalBody>
-              <ModalFooter>
-                <Button type="submit" isLoading={isSubmitting}>
-                  Submit
-                </Button>
-              </ModalFooter>
-            </Form>
-          )}
-        </Formik>
-      </ModalContent>
-    </Modal>
+    <PlatformFormModal
+      initialValues={{ name: "", redirectUris: [""] }}
+      isOpen={isOpen}
+      handleSubmit={handleSubmit}
+      onClose={onClose}
+    />
   );
 }
 
