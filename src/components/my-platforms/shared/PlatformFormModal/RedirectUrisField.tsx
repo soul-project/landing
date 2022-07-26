@@ -46,7 +46,12 @@ export default function RedirectUrisField({ redirectUris }: Props) {
                         />
                         {index > 0 && (
                           <InputRightElement>
-                            <Box as="button" width="100%" height="100%">
+                            <Box
+                              as="button"
+                              width="100%"
+                              height="100%"
+                              type="button"
+                            >
                               <SmallCloseIcon onClick={() => remove(index)} />
                             </Box>
                           </InputRightElement>
@@ -62,7 +67,9 @@ export default function RedirectUrisField({ redirectUris }: Props) {
             </Field>
           ))}
           {redirectUris.length < MAX_PLATFORM_REDIRECT_URIS && (
-            <Button onClick={() => push("")}>Add more redirect uris</Button>
+            <Button onClick={() => push("")} type="button">
+              Add more redirect uris
+            </Button>
           )}
         </>
       )}

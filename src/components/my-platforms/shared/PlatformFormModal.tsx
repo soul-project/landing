@@ -10,7 +10,7 @@ import {
   Button,
   Spinner,
 } from "@chakra-ui/react";
-import { Formik, Form } from "formik";
+import { Formik, Form, FormikHelpers } from "formik";
 
 import { formSchema, FormValues } from "src/components/my-platforms/form";
 
@@ -36,7 +36,7 @@ export default function PlatformFormModal({
             onSubmit={handleSubmit}
             validationSchema={formSchema}
           >
-            {({ values, isSubmitting }) => (
+            {({ values, isSubmitting, dirty }) => (
               <Form>
                 <ModalBody>
                   <VStack spacing="16px" alignItems="flex-start">
@@ -45,7 +45,11 @@ export default function PlatformFormModal({
                   </VStack>
                 </ModalBody>
                 <ModalFooter>
-                  <Button type="submit" isLoading={isSubmitting}>
+                  <Button
+                    type="submit"
+                    isLoading={isSubmitting}
+                    isDisabled={!dirty}
+                  >
                     Submit
                   </Button>
                 </ModalFooter>
@@ -63,7 +67,7 @@ export default function PlatformFormModal({
 type Props = {
   isOpen: boolean;
   onClose: () => void;
-  handleSubmit: (values: FormValues) => void;
+  handleSubmit: (values: FormValues, action: FormikHelpers<FormValues>) => void;
   initialValues?: FormValues;
   title: string;
 };

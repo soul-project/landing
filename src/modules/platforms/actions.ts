@@ -128,3 +128,28 @@ type PlatformFull = {
   nameHandle: string;
   redirectUris: string[];
 };
+
+export const update = async ({
+  accessToken,
+  name,
+  redirectUris,
+  platformId,
+}: UpdateArgs) => {
+  return axios.patch(
+    `${PLATFORMS_API}/${platformId}`,
+    {
+      name,
+      redirect_uris: redirectUris,
+    },
+    {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    }
+  );
+};
+
+export type UpdateArgs = {
+  accessToken: string;
+  name: string;
+  redirectUris: string[];
+  platformId: number;
+};
