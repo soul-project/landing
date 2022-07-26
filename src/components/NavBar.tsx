@@ -1,10 +1,16 @@
-import { Button, HStack } from "@chakra-ui/react";
+import { Button, HStack, Link } from "@chakra-ui/react";
 
 export default function NavBar({ onSignIn, isSignedIn, onSignOut }: Props) {
   return (
-    <HStack justifyContent="flex-end" padding="32px 0px">
+    <HStack justifyContent="space-between" padding="32px 0px">
+      {isSignedIn && (
+        <HStack spacing="16px">
+          <Link href="/">Home</Link>
+          <Link href="/my-platforms">My platforms</Link>
+        </HStack>
+      )}
       <Button
-        variant="link"
+        variant="outline"
         onClick={() => (isSignedIn ? onSignOut() : onSignIn())}
       >
         {isSignedIn ? "Logout" : "Login"}
