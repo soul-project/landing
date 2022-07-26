@@ -7,6 +7,7 @@ import { useMutation, useQueryClient } from "react-query";
 import { DestroyArgs, destroy, getMyList } from "src/modules/platforms/actions";
 
 import EditPlatformModal from "./Actions/EditPlatformModal";
+import { DeletePlatformDialog } from "./Actions/DeletePlatformDialog";
 
 const SOUL_PLATFORM_ID = 2;
 
@@ -14,17 +15,23 @@ export default function Actions({ platformId }: Props) {
   const { data: session } = useSession();
   const toast = useToast();
   const queryClient = useQueryClient();
+
   const {
     isOpen: isEditModalOpen,
     onOpen: onOpenEditModal,
     onClose: onCloseEditModal,
+  } = useDisclosure();
+  const {
+    isOpen: isDeleteDialogOpen,
+    onOpen: onDeleteDialogOpen,
+    onClose: onDeleteDialogClose,
   } = useDisclosure();
   const { mutate: destroyPlatform, isLoading } = useMutation<
     any,
     void,
     DestroyArgs
   >((args) => destroy(args), {
-    onSuccess: () => {
+    onSuccess: async () => {
       toast({
         title: "Platform deleted.",
         status: "success",
@@ -32,7 +39,8 @@ export default function Actions({ platformId }: Props) {
         isClosable: true,
         position: "bottom-right",
       });
-      queryClient.invalidateQueries(getMyList.key);
+      await queryClient.invalidateQueries(getMyList.key);
+      onDeleteDialogClose();
     },
     onError: () => {
       toast({
@@ -52,6 +60,17 @@ export default function Actions({ platformId }: Props) {
         isOpen={isEditModalOpen}
         onClose={onCloseEditModal}
       />
+      <DeletePlatformDialog
+        isOpen={isDeleteDialogOpen}
+        onClose={onDeleteDialogClose}
+        isDeleting={isLoading}
+        onDelete={() =>
+          destroyPlatform({
+            accessToken: session!.accessToken,
+            platformId,
+          })
+        }
+      />
       <HStack justifyContent="flex-end">
         <Button
           disabled={!session || platformId === SOUL_PLATFORM_ID}
@@ -61,13 +80,7 @@ export default function Actions({ platformId }: Props) {
         </Button>
         <Button
           disabled={!session || platformId === SOUL_PLATFORM_ID}
-          isLoading={isLoading}
-          onClick={() =>
-            destroyPlatform({
-              accessToken: session!.accessToken,
-              platformId,
-            })
-          }
+          onClick={onDeleteDialogOpen}
         >
           <DeleteIcon color="red" />
         </Button>

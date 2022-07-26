@@ -67,7 +67,7 @@ export default function RedirectUrisField({ redirectUris }: Props) {
             </Field>
           ))}
           {redirectUris.length < MAX_PLATFORM_REDIRECT_URIS && (
-            <Button onClick={() => push("")} type="button">
+            <Button onClick={() => push("")} type="button" variant="link">
               Add more redirect uris
             </Button>
           )}
