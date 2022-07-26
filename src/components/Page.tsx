@@ -9,6 +9,8 @@ export default function Page({ children }: React.PropsWithChildren<{}>) {
         padding={["0px 16px", "0px 32px", "0px 64px"]}
         display="flex"
         flexDirection="column"
+        maxW="1500px"
+        mx="auto"
       >
         {children}
       </Box>
