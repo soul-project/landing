@@ -2,7 +2,10 @@ import { Button, HStack, Link } from "@chakra-ui/react";
 
 export default function NavBar({ onSignIn, isSignedIn, onSignOut }: Props) {
   return (
-    <HStack justifyContent="space-between" padding="32px 0px">
+    <HStack
+      justifyContent={isSignedIn ? "space-between" : "flex-end"}
+      padding="32px 0px"
+    >
       {isSignedIn && (
         <HStack spacing="16px">
           <Link href="/">Home</Link>
