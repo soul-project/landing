@@ -1,6 +1,7 @@
-import { Box, Stack, useDisclosure } from "@chakra-ui/react";
-import { signIn, signOut, getSession, useSession } from "next-auth/react";
 import { useEffect } from "react";
+import { Box, Stack, useDisclosure } from "@chakra-ui/react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { unstable_getServerSession } from "next-auth/next";
 import { NextPage } from "next";
 import Image from "next/image";
 
@@ -13,9 +14,20 @@ import AccessTokenModal from "src/components/index/AccessTokenModal";
 
 import Logo from "../../public/logo.png";
 
+import { authOptions } from "./api/auth/[...nextauth]";
+
 export async function getServerSideProps(ctx: any) {
-  const session = await getSession(ctx);
-  return { props: { session } };
+  const session = await unstable_getServerSession(
+    ctx.req,
+    ctx.res,
+    authOptions
+  );
+
+  return {
+    props: {
+      session: session ? { ...session, error: session.error ?? null } : null,
+    },
+  };
 }
 
 const Home: NextPage = () => {

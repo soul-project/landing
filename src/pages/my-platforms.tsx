@@ -1,6 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
-import { getSession, signIn, signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { unstable_getServerSession } from "next-auth";
 import { VStack, useDisclosure } from "@chakra-ui/react";
 import { dehydrate, QueryClient } from "react-query";
 
@@ -13,8 +14,14 @@ import Header from "src/components/my-platforms/Header";
 import { getMyList } from "src/modules/platforms/actions";
 import PlatformsList from "src/components/my-platforms/PlatformsList";
 
+import { authOptions } from "./api/auth/[...nextauth]";
+
 export async function getServerSideProps(ctx: any) {
-  const session = await getSession(ctx);
+  const session = await unstable_getServerSession(
+    ctx.req,
+    ctx.res,
+    authOptions
+  );
   const queryClient = new QueryClient();
 
   if (!session) {
@@ -33,7 +40,12 @@ export async function getServerSideProps(ctx: any) {
     getMyList(getMyPlatformsListArgs)
   );
 
-  return { props: { session, dehydratedState: dehydrate(queryClient) } };
+  return {
+    props: {
+      session: { ...session, error: session.error ?? null },
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
 }
 
 const MyPlatforms: NextPage = () => {
