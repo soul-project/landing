@@ -14,6 +14,7 @@ declare module "next-auth" {
   interface Session {
     user: SoulUser;
     accessToken: string;
+    error?: string;
   }
 
   interface Profile extends SoulUser {}
