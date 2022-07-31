@@ -21,6 +21,13 @@ export default function Footer() {
               Soul&apos;s organization Github
             </Link>
             <Link
+              href="https://discord.gg/kuGNRembKZ"
+              target="_blank"
+              whiteSpace="nowrap"
+            >
+              Discord server
+            </Link>
+            <Link
               href="mailto:lws803@gmail.com"
               target="_blank"
               whiteSpace="nowrap"
