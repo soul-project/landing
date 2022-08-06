@@ -9,22 +9,6 @@ export const DocStyleWrapper = styled(Box)`
     margin-top: var(--chakra-space-3);
   }
 
-  // Header styles
-  h1 {
-    font-size: var(--chakra-fontSizes-3xl);
-    font-weight: bold;
-  }
-
-  h2 {
-    font-size: var(--chakra-fontSizes-2xl);
-    font-weight: bold;
-  }
-
-  h3 {
-    font-size: var(--chakra-fontSizes-xl);
-    font-weight: bold;
-  }
-
   // List styles
 
   ul,

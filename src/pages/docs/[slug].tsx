@@ -11,10 +11,16 @@ import NavBar from "src/components/NavBar";
 import Footer from "src/components/Footer";
 import { DocStyleWrapper } from "src/components/docs/UI";
 import Sidebar from "src/components/docs/Sidebar";
+import H1 from "src/components/docs/elements/H1";
+import H2 from "src/components/docs/elements/H2";
+import H3 from "src/components/docs/elements/H3";
 
-const CodeBlock = dynamic(() => import("src/components/docs/CodeBlock"), {
-  ssr: false,
-});
+const CodeBlock = dynamic(
+  () => import("src/components/docs/elements/CodeBlock"),
+  {
+    ssr: false,
+  }
+);
 
 export async function getStaticPaths() {
   const paths = allDocs.map((doc: Doc) => doc.url);
@@ -56,7 +62,11 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
               {doc.title}
             </Text>
             <DocStyleWrapper>
-              <MDXContent components={{ CodeBlock }} />
+              <MDXContent components={{ CodeBlock, h1: H1, h2: H2, h3: H3 }} />
+              {/* 
+                TODO: Try to specify replacement for the header component and lists instead
+                https://tomekdev.com/posts/anchors-for-headings-in-mdx
+               */}
             </DocStyleWrapper>
           </VStack>
         </HStack>
