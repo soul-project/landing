@@ -6,6 +6,7 @@ const theme = extendTheme({
       pink: { light: "#F72585", dark: "#B5179E", 200: "#F72585" },
       green: { 200: "#02DE7B" },
       blue: "#4CC9F0",
+      bgGrey: "#141516",
     },
   },
   config: {

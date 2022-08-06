@@ -3,8 +3,14 @@ import { Button, HStack, Link } from "@chakra-ui/react";
 
 export default function NavBar({ onSignIn, isSignedIn, onSignOut }: Props) {
   return (
-    // TODO: Make the navbar sticky as well
-    <HStack justifyContent="space-between" padding="32px 0px">
+    <HStack
+      justifyContent="space-between"
+      padding="32px 0px"
+      position="sticky"
+      top="0px"
+      bgColor="soul.bgGrey"
+      zIndex={9999}
+    >
       <HStack spacing="16px">
         <NextLink passHref href="/">
           <Link>Home</Link>

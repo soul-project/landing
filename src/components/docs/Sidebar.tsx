@@ -9,7 +9,6 @@ export default function Sidebar({ currentDocId }: Props) {
     <Box
       position="sticky"
       w="280px"
-      height="calc(100vh - 8.125rem)"
       overflowY="auto"
       top="6.5rem"
       overscrollBehavior="contain"
