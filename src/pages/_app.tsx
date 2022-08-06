@@ -5,7 +5,6 @@ import { AppProps } from "next/app";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 
 import theme from "src/theme";
-
 import "src/styles/prism-one-dark.css";
 
 function MyApp({
