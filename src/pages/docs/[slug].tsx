@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Head from "next/head";
 import { Text } from "@chakra-ui/react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useMDXComponent } from "next-contentlayer/hooks";
 
 import { allDocs, Doc } from "contentlayer/generated";
 import Page from "src/components/Page";
@@ -22,6 +23,7 @@ export async function getStaticProps({ params }: { params: any }) {
 
 const DocLayout = ({ doc }: { doc: Doc }) => {
   const { data: session } = useSession();
+  const MDXContent = useMDXComponent(doc.body.code);
 
   useEffect(() => {
     if (session?.error === "RefreshAccessTokenError") {
@@ -44,7 +46,7 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
         <div>
           <Text fontSize="3xl">{doc.title}</Text>
         </div>
-        <div dangerouslySetInnerHTML={{ __html: doc.body.html }} />
+        <MDXContent />
       </Page>
       <Footer />
     </>
