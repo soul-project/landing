@@ -1,5 +1,5 @@
 ---
-title: Lorem Ipsum
+title: Hello world
 ---
 
 Ullamco et nostrud magna commodo nostrud occaecat quis pariatur id ipsum. Ipsum
