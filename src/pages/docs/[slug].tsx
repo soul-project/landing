@@ -44,6 +44,8 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
     }
   }, [session]);
 
+  console.log(doc.headerList);
+
   return (
     <>
       <Head>
@@ -64,11 +66,13 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
             <DocStyleWrapper>
               <MDXContent components={{ CodeBlock, h1: H1, h2: H2, h3: H3 }} />
               {/* 
-                TODO: Try to specify replacement for the header component and lists instead
+                TODO: Try to specify replacement for the lists instead
                 https://tomekdev.com/posts/anchors-for-headings-in-mdx
                */}
             </DocStyleWrapper>
           </VStack>
+
+          {/* TODO: Add On this page sidebar navigator */}
         </HStack>
       </Page>
       <Footer />

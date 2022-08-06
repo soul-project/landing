@@ -37,7 +37,7 @@ pre[class*="language-"] {
     monospace;
   direction: ltr;
   text-align: left;
-  white-space: pre;
+  white-space: normal;
   word-spacing: normal;
   word-break: normal;
   line-height: 1.5;
