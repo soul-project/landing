@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run content:build && next build",
     "start": "next start",
     "lint": "next lint && npm run check-types",
-    "check-types": "tsc"
+    "check-types": "tsc",
+    "content:build": "contentlayer build",
+    "content:dev": "contentlayer dev"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.2",
@@ -16,10 +18,12 @@
     "@emotion/styled": "^11.8.1",
     "@sentry/nextjs": "^7.2.0",
     "axios": "^0.27.2",
+    "contentlayer": "^0.2.7",
     "formik": "^2.2.9",
     "framer-motion": "^6.3.11",
     "next": "12.1.6",
     "next-auth": "^4.10.2",
+    "next-contentlayer": "^0.2.7",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-query": "^3.39.2",

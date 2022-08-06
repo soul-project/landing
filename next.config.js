@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const { withSentryConfig } = require("@sentry/nextjs");
+const { withContentlayer } = require("next-contentlayer");
 
 const moduleExports = () => {
   const nextConfig = {
@@ -20,4 +21,7 @@ const sentryWebpackPluginOptions = {
   // https://github.com/getsentry/sentry-webpack-plugin#options.
 };
 
-module.exports = withSentryConfig(moduleExports, sentryWebpackPluginOptions);
+module.exports = withSentryConfig(
+  withContentlayer(moduleExports),
+  sentryWebpackPluginOptions
+);
