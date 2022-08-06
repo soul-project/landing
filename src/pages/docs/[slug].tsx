@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Head from "next/head";
-import { Text } from "@chakra-ui/react";
+import { Text, Box } from "@chakra-ui/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useMDXComponent } from "next-contentlayer/hooks";
 
@@ -8,6 +8,7 @@ import { allDocs, Doc } from "contentlayer/generated";
 import Page from "src/components/Page";
 import NavBar from "src/components/NavBar";
 import Footer from "src/components/Footer";
+import { DocStyleWrapper } from "src/components/docs/UI";
 
 export async function getStaticPaths() {
   const paths = allDocs.map((doc: Doc) => doc.url);
@@ -31,6 +32,8 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
     }
   }, [session]);
 
+  // TODO: Create a sidebar to navigate docs pages
+
   return (
     <>
       <Head>
@@ -43,10 +46,12 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
           isSignedIn={!!session}
         />
 
-        <div>
+        <Box>
           <Text fontSize="3xl">{doc.title}</Text>
-        </div>
-        <MDXContent />
+        </Box>
+        <DocStyleWrapper>
+          <MDXContent />
+        </DocStyleWrapper>
       </Page>
       <Footer />
     </>
