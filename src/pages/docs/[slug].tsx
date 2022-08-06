@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Head from "next/head";
-import { Text, Box, HStack, VStack } from "@chakra-ui/react";
+import { Text, HStack, VStack } from "@chakra-ui/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useMDXComponent } from "next-contentlayer/hooks";
 
