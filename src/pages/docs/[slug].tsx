@@ -10,6 +10,7 @@ import NavBar from "src/components/NavBar";
 import Footer from "src/components/Footer";
 import { DocStyleWrapper } from "src/components/docs/UI";
 import Sidebar from "src/components/docs/Sidebar";
+import CodeBlock from "src/components/docs/CodeBlock";
 
 export async function getStaticPaths() {
   const paths = allDocs.map((doc: Doc) => doc.url);
@@ -33,8 +34,6 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
     }
   }, [session]);
 
-  // TODO: Create a sidebar to navigate docs pages
-
   return (
     <>
       <Head>
@@ -49,11 +48,11 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
         <HStack alignItems="flex-start" spacing="20px">
           <Sidebar currentDocId={doc._id} />
           <VStack alignItems="flex-start" w="100%" flexShrink={2}>
-            <Text fontSize="3xl" fontWeight="bold">
+            <Text fontSize="4xl" fontWeight="bold">
               {doc.title}
             </Text>
             <DocStyleWrapper>
-              <MDXContent />
+              <MDXContent components={{ CodeBlock }} />
             </DocStyleWrapper>
           </VStack>
         </HStack>

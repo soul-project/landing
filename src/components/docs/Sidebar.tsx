@@ -19,16 +19,21 @@ export default function Sidebar({ currentDocId }: Props) {
         <Text fontSize="xl" fontWeight="bold">
           Documentation
         </Text>
-        {allDocs.map((doc) => (
-          <NextLink passHref href={doc.url} key={doc._id}>
-            <Link
-              _hover={{ textDecoration: "none" }}
-              fontWeight={currentDocId === doc._id ? "bold" : "normal"}
-            >
-              {doc.title}
-            </Link>
-          </NextLink>
-        ))}
+        {/* TODO: Add position overrides to docs as well */}
+        {allDocs
+          .sort((a, b) =>
+            a.title.localeCompare(b.title, undefined, { sensitivity: "base" })
+          )
+          .map((doc) => (
+            <NextLink passHref href={doc.url} key={doc._id}>
+              <Link
+                _hover={{ textDecoration: "none" }}
+                fontWeight={currentDocId === doc._id ? "bold" : "normal"}
+              >
+                {doc.title}
+              </Link>
+            </NextLink>
+          ))}
       </VStack>
     </Box>
   );
