@@ -10,7 +10,7 @@ export default function Sidebar({ currentDocId }: Props) {
       position="sticky"
       w="280px"
       overflowY="auto"
-      top="6.5rem"
+      top="104px"
       overscrollBehavior="contain"
       flexShrink={0}
     >

@@ -14,6 +14,7 @@ import Sidebar from "src/components/docs/Sidebar";
 import H1 from "src/components/docs/elements/H1";
 import H2 from "src/components/docs/elements/H2";
 import H3 from "src/components/docs/elements/H3";
+import TOCBar from "src/components/docs/TOCBar";
 
 const CodeBlock = dynamic(
   () => import("src/components/docs/elements/CodeBlock"),
@@ -44,8 +45,6 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
     }
   }, [session]);
 
-  console.log(doc.headerList);
-
   return (
     <>
       <Head>
@@ -71,8 +70,7 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
                */}
             </DocStyleWrapper>
           </VStack>
-
-          {/* TODO: Add On this page sidebar navigator */}
+          <TOCBar headers={doc.headerList} />
         </HStack>
       </Page>
       <Footer />

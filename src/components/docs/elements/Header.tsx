@@ -9,7 +9,7 @@ function Header({ children, fontSize }: Props) {
       fontSize={fontSize}
       fontWeight="bold"
       position="relative"
-      scrollMarginTop="120px"
+      scrollMarginTop="110px"
     >
       <Link
         href={anchorElement.props.href}
