@@ -10,7 +10,7 @@ export default function Page({ children }: React.PropsWithChildren<{}>) {
         display="flex"
         flexDirection="column"
         maxW="1500px"
-        mt="auto"
+        mx="auto"
         mb="48px"
       >
         {children}
