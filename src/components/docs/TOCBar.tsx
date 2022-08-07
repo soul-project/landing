@@ -9,10 +9,9 @@ export default function TOCBar({ headers }: Props) {
       top="104px"
       right="0px"
       overflowY="auto"
-      width="192px"
+      width="256px"
       flexShrink={0}
-      // display={["none", "block"]} // TODO: Fix this and make the sidebar
-      // disappear when the window is too small
+      display={["none", "none", "none", "none", "block"]}
     >
       <VStack alignItems="flex-start" spacing="16px">
         <Text fontWeight="bold">On this page</Text>
