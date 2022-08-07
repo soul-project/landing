@@ -14,25 +14,27 @@ export default function TOCBar({ headers }: Props) {
       // display={["none", "block"]} // TODO: Fix this and make the sidebar
       // disappear when the window is too small
     >
-      <VStack alignItems="flex-start">
+      <VStack alignItems="flex-start" spacing="16px">
         <Text fontWeight="bold">On this page</Text>
-        {headers.map(({ content, anchorId, heading }) => {
-          let level: number | undefined = undefined;
-          if (heading < largestHeaderLevel) {
-            largestHeaderLevel = heading;
-          } else {
-            level = heading;
-          }
-          return (
-            <Box key={anchorId} pl={level && `${level - 1}rem`}>
-              <NextLink passHref href={`#${anchorId}`}>
-                <Link display="inline">
-                  <Text>{content}</Text>
-                </Link>
-              </NextLink>
-            </Box>
-          );
-        })}
+        <VStack alignItems="flex-start">
+          {headers.map(({ content, anchorId, heading }) => {
+            let level: number | undefined = undefined;
+            if (heading < largestHeaderLevel) {
+              largestHeaderLevel = heading;
+            } else {
+              level = heading - largestHeaderLevel;
+            }
+            return (
+              <Box key={anchorId} pl={level && `${level}rem`}>
+                <NextLink passHref href={`#${anchorId}`}>
+                  <Link display="inline">
+                    <Text>{content}</Text>
+                  </Link>
+                </NextLink>
+              </Box>
+            );
+          })}
+        </VStack>
       </VStack>
     </Box>
   );

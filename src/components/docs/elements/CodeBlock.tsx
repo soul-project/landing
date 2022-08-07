@@ -9,9 +9,14 @@ export default function CodeBlock({ children }: Props) {
     Prism.highlightAll();
   }, []);
 
-  return <>{children}</>;
+  console.log(
+    "🚀 ~ file: CodeBlock.tsx ~ line 16 ~ CodeBlock ~ children",
+    children.props.children
+  );
+
+  return <pre>{children}</pre>;
 }
 
 type Props = {
-  children: React.ReactNode;
+  children: React.ReactElement;
 };

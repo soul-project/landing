@@ -63,7 +63,9 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
               {doc.title}
             </Text>
             <DocStyleWrapper>
-              <MDXContent components={{ CodeBlock, h1: H1, h2: H2, h3: H3 }} />
+              <MDXContent
+                components={{ pre: CodeBlock, h1: H1, h2: H2, h3: H3 }}
+              />
               {/* 
                 TODO: Try to specify replacement for the lists instead
                 https://tomekdev.com/posts/anchors-for-headings-in-mdx
