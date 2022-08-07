@@ -72,6 +72,7 @@ export default function Actions({ platformId }: Props) {
         }
       />
       <HStack justifyContent="flex-end">
+        {/* TODO:L Use icon buttons instead */}
         <Button
           disabled={!session || platformId === SOUL_PLATFORM_ID}
           onClick={onOpenEditModal}

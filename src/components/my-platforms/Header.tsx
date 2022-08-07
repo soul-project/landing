@@ -9,6 +9,7 @@ export default function Header({ onOpen }: Props) {
         <Text fontSize="3xl" fontWeight="bold">
           My platforms
         </Text>
+        {/* TODO: Use icon buttons instead */}
         <Button onClick={onOpen}>
           <AddIcon />
         </Button>

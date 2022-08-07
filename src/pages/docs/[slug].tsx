@@ -11,9 +11,7 @@ import NavBar from "src/components/NavBar";
 import Footer from "src/components/Footer";
 import { DocStyleWrapper } from "src/components/docs/UI";
 import Sidebar from "src/components/docs/Sidebar";
-import H1 from "src/components/docs/elements/H1";
-import H2 from "src/components/docs/elements/H2";
-import H3 from "src/components/docs/elements/H3";
+import * as elements from "src/components/docs/elements";
 import TOCBar from "src/components/docs/TOCBar";
 
 const CodeBlock = dynamic(
@@ -64,7 +62,12 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
             </Text>
             <DocStyleWrapper>
               <MDXContent
-                components={{ pre: CodeBlock, h1: H1, h2: H2, h3: H3 }}
+                components={{
+                  pre: CodeBlock,
+                  h1: elements.H1,
+                  h2: elements.H2,
+                  h3: elements.H3,
+                }}
               />
               {/* 
                 TODO: Try to specify replacement for the lists instead

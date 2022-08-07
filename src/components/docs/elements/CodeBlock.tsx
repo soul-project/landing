@@ -1,20 +1,53 @@
 import React, { useEffect } from "react";
 import Prism from "prismjs";
+import reactStringReplace from "react-string-replace";
+import { Box, IconButton, useClipboard } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
+import { CheckIcon, CopyIcon } from "@chakra-ui/icons";
 
 require("prismjs/components/prism-bash");
 
+const ACCESS_TOKEN_SYMBOL = "<ACCESS_TOKEN>";
+
 export default function CodeBlock({ children }: Props) {
-  // TODO: Add a code copy functionality and also an auto-fill to fill specific key words
+  // TODO:  Maybe do the reactStrigngReplace after this component so that the
+  // button will not be replaced
+
   useEffect(() => {
     Prism.highlightAll();
   }, []);
 
-  console.log(
-    "🚀 ~ file: CodeBlock.tsx ~ line 16 ~ CodeBlock ~ children",
-    children.props.children
+  const { data: session } = useSession();
+
+  const { hasCopied, onCopy } = useClipboard(
+    children.props.children.replace(
+      ACCESS_TOKEN_SYMBOL,
+      session?.accessToken || ACCESS_TOKEN_SYMBOL
+    )
+  );
+  const processedSnippet = reactStringReplace(
+    children.props.children,
+    ACCESS_TOKEN_SYMBOL,
+    (match) => session?.accessToken || match
   );
 
-  return <pre>{children}</pre>;
+  return (
+    <Box position="relative" role="group">
+      <IconButton
+        aria-label="Copy code snippet"
+        icon={hasCopied ? <CheckIcon mt="0px" /> : <CopyIcon mt="0px" />}
+        position="absolute"
+        right="0px"
+        m="8px"
+        onClick={onCopy}
+        _groupHover={{ visibility: "visible" }}
+        visibility={hasCopied ? "visible" : "hidden"}
+      />
+      <pre className={children.props.className}>
+        <code className={children.props.className}>{processedSnippet}</code>
+      </pre>
+    </Box>
+  );
 }
 
 type Props = {
