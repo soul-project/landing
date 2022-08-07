@@ -7,7 +7,7 @@ function H3({ children }: Props) {
 }
 
 type Props = {
-  children: string;
+  children: React.ReactElement[];
 };
 
 export default H3;

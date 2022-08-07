@@ -19,6 +19,7 @@
     "formik",
     "pkce",
     "prismjs",
+    "rehype",
     "waitlist"
   ]
 }

@@ -1,6 +1,14 @@
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
-import { getAnchor } from "./src/components/docs/utils";
+function getAnchor(text) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9 ]/g, "")
+    .replace(/((\s*\S+)*)\s*/, "$1")
+    .replace(/[ ]/g, "-");
+}
 
 export const Doc = defineDocumentType(() => ({
   name: "Doc",
@@ -22,13 +30,29 @@ export const Doc = defineDocumentType(() => ({
       type: "list",
       resolve: (doc) => {
         const regXHeader = /(?<flag>#{1,6})\s+(?<content>.+)/g;
-        const headerList = Array.from(doc.body.raw.matchAll(regXHeader)).map(
-          ({ groups: { flag, content } }) => ({
+        const headings = Array.from(doc.body.raw.matchAll(regXHeader));
+        const headingsMap = {};
+        const headerList = headings.map((headingNode) => {
+          const {
+            groups: { flag, content },
+          } = headingNode;
+
+          const rawAnchor = getAnchor(content);
+
+          let anchorId = rawAnchor;
+          if (rawAnchor in headingsMap) {
+            anchorId = `${rawAnchor}-${headingsMap[rawAnchor] + 1}`;
+            headingsMap[rawAnchor]++;
+          } else {
+            headingsMap[rawAnchor] = 0;
+          }
+          return {
             heading: flag.length,
             content,
-            anchorId: getAnchor(content),
-          })
-        );
+            anchorId,
+          };
+        });
+
         return headerList;
       },
     },
@@ -38,4 +62,5 @@ export const Doc = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: "src/docs",
   documentTypes: [Doc],
+  mdx: { rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings] },
 });

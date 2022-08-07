@@ -1,30 +1,35 @@
 import React from "react";
 import { Text, Link, HTMLChakraProps } from "@chakra-ui/react";
 
-import { getAnchor } from "../utils";
-
 function Header({ children, fontSize }: Props) {
-  const anchor = getAnchor(children);
-  const link = `#${anchor}`;
+  const anchorElement = children[0];
   return (
-    <Text id={anchor} fontSize={fontSize} fontWeight="bold" position="relative">
+    <Text
+      id={anchorElement.props.href.substring(1)}
+      fontSize={fontSize}
+      fontWeight="bold"
+      position="relative"
+      scrollMarginTop="120px"
+    >
       <Link
-        href={link}
+        href={anchorElement.props.href}
         position="absolute"
         opacity={0}
         transform="translate(-1em, -11px)"
         width="1em"
         _hover={{ opacity: 1 }}
+        aria-hidden={true}
+        tabIndex={-1}
       >
         #
       </Link>
-      {children}
+      {children[1]}
     </Text>
   );
 }
 
 type Props = {
-  children: string;
+  children: React.ReactElement[];
   fontSize: HTMLChakraProps<"p">["fontSize"];
 };
 
