@@ -7,6 +7,7 @@ const theme = extendTheme({
       green: { 200: "#02DE7B" },
       blue: "#4CC9F0",
       bgGrey: "#141516",
+      borderGrey: "#4d4e4f",
     },
   },
   config: {

@@ -13,6 +13,7 @@ import { DocStyleWrapper } from "src/components/docs/UI";
 import Sidebar from "src/components/docs/Sidebar";
 import * as elements from "src/components/docs/elements";
 import TOCBar from "src/components/docs/TOCBar";
+import Pagination from "src/components/docs/Pagination";
 
 const CodeBlock = dynamic(
   () => import("src/components/docs/elements/CodeBlock"),
@@ -59,24 +60,27 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
           spacing={["0px", "0px", "0px", "20px", "20px"]}
         >
           <Sidebar currentDocId={doc._id} />
-          <VStack alignItems="flex-start" w="100%" flexShrink={2}>
-            <Text fontSize="4xl" fontWeight="bold">
-              {doc.title}
-            </Text>
-            <DocStyleWrapper>
-              <MDXContent
-                components={{
-                  pre: CodeBlock,
-                  h1: elements.H1,
-                  h2: elements.H2,
-                  h3: elements.H3,
-                }}
-              />
-              {/* 
+          <VStack alignItems="flex-start" w="100%" spacing="64px">
+            <VStack alignItems="flex-start" w="100%" flexShrink={2}>
+              <Text fontSize="4xl" fontWeight="bold">
+                {doc.title}
+              </Text>
+              <DocStyleWrapper>
+                <MDXContent
+                  components={{
+                    pre: CodeBlock,
+                    h1: elements.H1,
+                    h2: elements.H2,
+                    h3: elements.H3,
+                  }}
+                />
+                {/* 
                 TODO: Try to specify replacement for the lists instead
                 https://tomekdev.com/posts/anchors-for-headings-in-mdx
                */}
-            </DocStyleWrapper>
+              </DocStyleWrapper>
+            </VStack>
+            <Pagination />
           </VStack>
           <TOCBar headers={doc.headerList} />
         </HStack>
