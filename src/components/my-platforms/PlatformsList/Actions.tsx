@@ -1,6 +1,6 @@
 import React from "react";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
-import { HStack, Button, useDisclosure, useToast } from "@chakra-ui/react";
+import { HStack, useDisclosure, useToast, IconButton } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import { useMutation, useQueryClient } from "react-query";
 
@@ -72,19 +72,18 @@ export default function Actions({ platformId }: Props) {
         }
       />
       <HStack justifyContent="flex-end">
-        {/* TODO:L Use icon buttons instead */}
-        <Button
+        <IconButton
+          icon={<EditIcon mt="0px" />}
+          aria-label="Edit platform"
           disabled={!session || platformId === SOUL_PLATFORM_ID}
           onClick={onOpenEditModal}
-        >
-          <EditIcon />
-        </Button>
-        <Button
+        />
+        <IconButton
+          icon={<DeleteIcon color="red" mt="0px" />}
+          aria-label="Delete platform"
           disabled={!session || platformId === SOUL_PLATFORM_ID}
           onClick={onDeleteDialogOpen}
-        >
-          <DeleteIcon color="red" />
-        </Button>
+        />
       </HStack>
     </>
   );
