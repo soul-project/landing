@@ -8,22 +8,22 @@ function Header({ children, fontSize }: Props) {
       id={anchorElement.props.href.substring(1)}
       fontSize={fontSize}
       fontWeight="bold"
-      position="relative"
       scrollMarginTop="110px"
+      role="group"
     >
+      {children[1]}
       <Link
         href={anchorElement.props.href}
-        position="absolute"
         opacity={0}
-        transform="translate(-1em, -11px)"
         width="1em"
-        _hover={{ opacity: 1 }}
+        _groupHover={{ opacity: 1 }}
         aria-hidden={true}
         tabIndex={-1}
+        pl="8px"
+        color="soul.pink.200"
       >
         #
       </Link>
-      {children[1]}
     </Text>
   );
 }

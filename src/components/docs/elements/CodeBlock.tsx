@@ -40,8 +40,8 @@ export default function CodeBlock({ children }: Props) {
         right="0px"
         m="8px"
         onClick={onCopy}
-        _groupHover={{ visibility: "visible" }}
-        visibility={hasCopied ? "visible" : "hidden"}
+        _groupHover={{ opacity: 1 }}
+        opacity={hasCopied ? 1 : 0}
       />
       <pre className={children.props.className}>
         <code className={children.props.className}>{processedSnippet}</code>

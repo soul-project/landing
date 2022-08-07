@@ -54,7 +54,10 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
           onSignOut={signOut}
           isSignedIn={!!session}
         />
-        <HStack alignItems="flex-start" spacing="20px">
+        <HStack
+          alignItems="flex-start"
+          spacing={["0px", "0px", "0px", "20px", "20px"]}
+        >
           <Sidebar currentDocId={doc._id} />
           <VStack alignItems="flex-start" w="100%" flexShrink={2}>
             <Text fontSize="4xl" fontWeight="bold">

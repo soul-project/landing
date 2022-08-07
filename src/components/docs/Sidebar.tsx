@@ -13,6 +13,7 @@ export default function Sidebar({ currentDocId }: Props) {
       top="104px"
       overscrollBehavior="contain"
       flexShrink={0}
+      display={["none", "none", "none", "block", "block"]}
     >
       <VStack alignItems="flex-start" spacing="16px">
         <Text fontSize="xl" fontWeight="bold">
