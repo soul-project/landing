@@ -4,6 +4,8 @@ import NextLink from "next/link";
 
 import { allDocs } from "contentlayer/generated";
 
+import { sortDocs } from "./utils";
+
 export default function Sidebar({ currentDocId }: Props) {
   return (
     <Box
@@ -19,21 +21,16 @@ export default function Sidebar({ currentDocId }: Props) {
         <Text fontSize="xl" fontWeight="bold">
           Documentation
         </Text>
-        {/* TODO: Add position overrides to docs as well */}
-        {allDocs
-          .sort((a, b) =>
-            a.title.localeCompare(b.title, undefined, { sensitivity: "base" })
-          )
-          .map((doc) => (
-            <NextLink passHref href={doc.url} key={doc._id}>
-              <Link
-                _hover={{ textDecoration: "none" }}
-                fontWeight={currentDocId === doc._id ? "bold" : "normal"}
-              >
-                {doc.title}
-              </Link>
-            </NextLink>
-          ))}
+        {sortDocs(allDocs).map((doc) => (
+          <NextLink passHref href={doc.url} key={doc._id}>
+            <Link
+              _hover={{ textDecoration: "none" }}
+              fontWeight={currentDocId === doc._id ? "bold" : "normal"}
+            >
+              {doc.title}
+            </Link>
+          </NextLink>
+        ))}
       </VStack>
     </Box>
   );

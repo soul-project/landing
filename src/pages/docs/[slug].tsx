@@ -78,7 +78,7 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
                */}
               </DocStyleWrapper>
             </VStack>
-            <Pagination />
+            <Pagination currentDocId={doc._id} />
           </VStack>
           <TOCBar headers={doc.headerList} />
         </HStack>
