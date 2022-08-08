@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import Head from "next/head";
 import { Text, HStack, VStack } from "@chakra-ui/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useMDXComponent } from "next-contentlayer/hooks";
@@ -7,6 +6,7 @@ import dynamic from "next/dynamic";
 
 import { allDocs, Doc } from "contentlayer/generated";
 import Page from "src/components/Page";
+import Head from "src/components/Head";
 import NavBar from "src/components/NavBar";
 import Footer from "src/components/Footer";
 import { DocStyleWrapper } from "src/components/docs/UI";
@@ -46,9 +46,7 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
 
   return (
     <>
-      <Head>
-        <title>{doc.title}</title>
-      </Head>
+      <Head subTitle="Documentation" />
       <Page>
         <NavBar
           onSignIn={() => signIn("soul")}
