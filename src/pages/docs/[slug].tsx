@@ -14,6 +14,7 @@ import Sidebar from "src/components/docs/Sidebar";
 import * as elements from "src/components/docs/elements";
 import TOCBar from "src/components/docs/TOCBar";
 import Pagination from "src/components/docs/Pagination";
+import EditLink from "src/components/docs/EditLink";
 
 const CodeBlock = dynamic(
   () => import("src/components/docs/elements/CodeBlock"),
@@ -78,6 +79,7 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
                */}
               </DocStyleWrapper>
             </VStack>
+            {doc.editUrl && <EditLink href={doc.editUrl} />}
             <Pagination currentDocId={doc._id} />
           </VStack>
           <TOCBar headers={doc.headerList} />

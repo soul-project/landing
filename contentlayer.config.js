@@ -20,6 +20,16 @@ export const Doc = defineDocumentType(() => ({
       description: "The title of the doc",
       required: true,
     },
+    sidebarPosition: {
+      type: "number",
+      description: "The position of the doc on the sidebar",
+      required: false,
+    },
+    editUrl: {
+      type: "string",
+      description: "The url to the GitHub edit page",
+      required: false,
+    },
   },
   computedFields: {
     url: {
