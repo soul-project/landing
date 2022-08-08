@@ -6,7 +6,7 @@ export default function EditLink({ href }: Props) {
     <Link href={href} target="_blank">
       <HStack>
         <ExternalLinkIcon />
-        <Text>Edit this page on GitHub</Text>
+        <Text fontWeight="light">Edit this page on GitHub</Text>
       </HStack>
     </Link>
   );
