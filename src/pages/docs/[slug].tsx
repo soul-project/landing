@@ -71,12 +71,11 @@ const DocLayout = ({ doc }: { doc: Doc }) => {
                     h1: elements.H1,
                     h2: elements.H2,
                     h3: elements.H3,
+                    li: elements.ListItem,
+                    ol: elements.OrderedList,
+                    ul: elements.UnorderedList,
                   }}
                 />
-                {/* 
-                TODO: Try to specify replacement for the lists instead
-                https://tomekdev.com/posts/anchors-for-headings-in-mdx
-               */}
               </DocStyleWrapper>
             </VStack>
             {doc.editUrl && <EditLink href={doc.editUrl} />}
