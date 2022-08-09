@@ -1,9 +1,9 @@
 import NextHead from "next/head";
 
-export default function Head() {
+export default function Head({ subTitle }: Props) {
   return (
     <NextHead>
-      <title>Join Soul</title>
+      <title>{subTitle ? `${subTitle} | Soul` : "Soul"}</title>
       <meta
         name="description"
         content="Soul, an identity provider for a federated social media eco-system."
@@ -12,3 +12,7 @@ export default function Head() {
     </NextHead>
   );
 }
+
+type Props = {
+  subTitle?: string;
+};

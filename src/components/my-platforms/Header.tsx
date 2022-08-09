@@ -1,5 +1,5 @@
 import { AddIcon } from "@chakra-ui/icons";
-import { HStack, Button, Text, Divider } from "@chakra-ui/react";
+import { HStack, Text, Divider, IconButton } from "@chakra-ui/react";
 
 export default function Header({ onOpen }: Props) {
   return (
@@ -8,9 +8,11 @@ export default function Header({ onOpen }: Props) {
         <Text fontSize="3xl" fontWeight="bold">
           My platforms
         </Text>
-        <Button onClick={onOpen}>
-          <AddIcon />
-        </Button>
+        <IconButton
+          icon={<AddIcon mt="0px" />}
+          aria-label="Add new platform"
+          onClick={onOpen}
+        />
       </HStack>
       <Divider />
     </>

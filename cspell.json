@@ -15,5 +15,11 @@
   "ignorePaths": [],
   "flagWords": [],
   // List of ignored words to avoid checking.
-  "words": ["formik", "pkce", "waitlist"]
+  "words": [
+    "formik",
+    "pkce",
+    "prismjs",
+    "rehype",
+    "waitlist"
+  ]
 }

@@ -17,6 +17,7 @@ import PlatformsList from "src/components/my-platforms/PlatformsList";
 import { authOptions } from "./api/auth/[...nextauth]";
 
 export async function getServerSideProps(ctx: any) {
+  // TODO: Maybe remove this since it might not be needed anymore
   const session = await unstable_getServerSession(
     ctx.req,
     ctx.res,
