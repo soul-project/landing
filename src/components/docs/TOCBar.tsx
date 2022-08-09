@@ -19,6 +19,7 @@ export default function TOCBar({ headers }: Props) {
       width="256px"
       flexShrink={0}
       display={["none", "none", "none", "none", "block"]}
+      overscrollBehavior="contain"
     >
       <VStack alignItems="flex-start" spacing="16px">
         <Text fontWeight="bold">On this page</Text>
