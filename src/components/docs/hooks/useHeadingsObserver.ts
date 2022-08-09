@@ -5,7 +5,7 @@ export default function useHeadingsObserver({ anchorIds }: Args) {
 
   useEffect(() => {
     const handleObsever = (entries: IntersectionObserverEntry[]) => {
-      const entry = entries[0];
+      const entry = entries.find((entry) => entry.isIntersecting);
       if (entry?.isIntersecting) {
         setActiveId(entry.target.id);
       }

@@ -34,16 +34,7 @@ export default function TOCBar({ headers }: Props) {
             return (
               <Box key={anchorId} pl={level && `${level}rem`}>
                 <NextLink passHref href={`#${anchorId}`}>
-                  <Link
-                    display="inline"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document?.querySelector(`#${anchorId}`) &&
-                        document.querySelector(`#${anchorId}`)!.scrollIntoView({
-                          behavior: "smooth",
-                        });
-                    }}
-                  >
+                  <Link display="inline">
                     <Text
                       fontWeight={activeId === anchorId ? "bold" : "normal"}
                     >
