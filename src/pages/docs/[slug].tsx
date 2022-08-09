@@ -29,6 +29,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: { params: any }) {
+  // TODO: If slug is undefined, redirect to index page
+  // const slug = params.slug || "index";
   const doc = allDocs.find(
     (doc: Doc) => doc._raw.flattenedPath === params.slug
   );

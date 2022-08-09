@@ -7,11 +7,11 @@ export const sortDocs = (allDocs: Doc[]) => {
       return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
     }
     if (a.sidebarPosition && b.sidebarPosition) {
-      return b.sidebarPosition - a.sidebarPosition;
+      return a.sidebarPosition - b.sidebarPosition;
     }
     if (a.sidebarPosition === undefined) {
-      return 1;
+      return -1;
     }
-    return -1;
+    return 1;
   });
 };

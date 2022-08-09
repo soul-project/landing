@@ -17,8 +17,8 @@ export default function Sidebar({ currentDocId }: Props) {
       flexShrink={0}
       display={["none", "none", "none", "block", "block"]}
     >
-      <VStack alignItems="flex-start" spacing="16px">
-        <Text fontSize="xl" fontWeight="bold">
+      <VStack alignItems="flex-start" spacing="12px">
+        <Text fontSize="xl" fontWeight="bold" padding="0px 8px">
           Documentation
         </Text>
         {sortDocs(allDocs).map((doc) => (
@@ -26,6 +26,12 @@ export default function Sidebar({ currentDocId }: Props) {
             <Link
               _hover={{ textDecoration: "none" }}
               fontWeight={currentDocId === doc._id ? "bold" : "normal"}
+              bgColor={
+                currentDocId === doc._id ? "soul.pink.lightTranslucent" : "none"
+              }
+              padding="4px 8px"
+              w="100%"
+              borderRadius="md"
             >
               {doc.title}
             </Link>

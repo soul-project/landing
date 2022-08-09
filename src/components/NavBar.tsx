@@ -16,7 +16,7 @@ export default function NavBar({ onSignIn, isSignedIn, onSignOut }: Props) {
           <Link>Home</Link>
         </NextLink>
 
-        <NextLink passHref href="/docs/intro">
+        <NextLink passHref href="/docs/introduction">
           <Link>Documentation</Link>
         </NextLink>
 
