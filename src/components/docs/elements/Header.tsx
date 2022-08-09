@@ -21,13 +21,6 @@ function Header({ children, fontSize }: Props) {
         tabIndex={-1}
         pl="8px"
         color="soul.pink.200"
-        onClick={(e) => {
-          e.preventDefault();
-          document?.querySelector(anchorElement.props.href) &&
-            document.querySelector(anchorElement.props.href)!.scrollIntoView({
-              behavior: "smooth",
-            });
-        }}
       >
         #
       </Link>
