@@ -1,8 +1,15 @@
+import React from "react";
 import { Box, Text, VStack, Link } from "@chakra-ui/react";
 import NextLink from "next/link";
 
+import useHeadingsObserver from "./hooks/useHeadingsObserver";
+
 export default function TOCBar({ headers }: Props) {
   let largestHeaderLevel = 6;
+  const { activeId } = useHeadingsObserver({
+    anchorIds: headers.map(({ anchorId }) => anchorId),
+  });
+
   return (
     <Box
       position="sticky"
@@ -26,8 +33,21 @@ export default function TOCBar({ headers }: Props) {
             return (
               <Box key={anchorId} pl={level && `${level}rem`}>
                 <NextLink passHref href={`#${anchorId}`}>
-                  <Link display="inline">
-                    <Text>{content}</Text>
+                  <Link
+                    display="inline"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document?.querySelector(`#${anchorId}`) &&
+                        document.querySelector(`#${anchorId}`)!.scrollIntoView({
+                          behavior: "smooth",
+                        });
+                    }}
+                  >
+                    <Text
+                      fontWeight={activeId === anchorId ? "bold" : "normal"}
+                    >
+                      {content}
+                    </Text>
                   </Link>
                 </NextLink>
               </Box>
