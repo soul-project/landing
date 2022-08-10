@@ -9,7 +9,7 @@ export default function NavBar({ onSignIn, isSignedIn, onSignOut }: Props) {
       position="sticky"
       top="0px"
       bgColor="soul.bgGrey"
-      zIndex={9999}
+      zIndex={1}
     >
       <HStack spacing="16px">
         <NextLink passHref href="/">
