@@ -3,6 +3,7 @@ import { ChakraProvider, CSSReset } from "@chakra-ui/react";
 import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
+import NextNProgress from "nextjs-progressbar";
 
 import theme from "src/theme";
 import "src/styles/prism-one-dark.css";
@@ -19,6 +20,7 @@ function MyApp({
         <Hydrate state={dehydratedState}>
           <ChakraProvider theme={theme}>
             <CSSReset />
+            <NextNProgress color="var(--chakra-colors-soul-pink-200)" />
             <Component {...pageProps} />
           </ChakraProvider>
         </Hydrate>
