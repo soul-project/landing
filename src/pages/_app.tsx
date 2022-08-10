@@ -20,7 +20,10 @@ function MyApp({
         <Hydrate state={dehydratedState}>
           <ChakraProvider theme={theme}>
             <CSSReset />
-            <NextNProgress color="var(--chakra-colors-soul-pink-200)" />
+            <NextNProgress
+              color="var(--chakra-colors-soul-pink-200)"
+              options={{ showSpinner: false }}
+            />
             <Component {...pageProps} />
           </ChakraProvider>
         </Hydrate>

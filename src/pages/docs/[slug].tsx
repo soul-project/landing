@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { NextPage } from "next";
 import { Text, HStack, VStack } from "@chakra-ui/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useMDXComponent } from "next-contentlayer/hooks";
@@ -42,7 +43,7 @@ export async function getServerSideProps(ctx: any) {
   };
 }
 
-const DocLayout = ({ doc }: { doc: Doc }) => {
+const DocLayout: NextPage<{ doc: Doc }> = ({ doc }) => {
   const { data: session } = useSession();
   const MDXContent = useMDXComponent(doc.body.code);
 
