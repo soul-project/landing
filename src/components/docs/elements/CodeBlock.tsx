@@ -35,7 +35,13 @@ export default function CodeBlock({ children }: Props) {
     <Box position="relative" role="group">
       <IconButton
         aria-label="Copy code snippet"
-        icon={hasCopied ? <CheckIcon mt="0px" /> : <CopyIcon mt="0px" />}
+        icon={
+          hasCopied ? (
+            <CheckIcon mt="0px" color="soul.green.200" />
+          ) : (
+            <CopyIcon mt="0px" />
+          )
+        }
         position="absolute"
         right="0px"
         m="8px"
