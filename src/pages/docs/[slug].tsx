@@ -3,6 +3,7 @@ import { Text, HStack, VStack } from "@chakra-ui/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import dynamic from "next/dynamic";
+import { unstable_getServerSession } from "next-auth";
 
 import { allDocs, Doc } from "contentlayer/generated";
 import Page from "src/components/Page";
@@ -16,23 +17,29 @@ import TOCBar from "src/components/docs/TOCBar";
 import Pagination from "src/components/docs/Pagination";
 import EditLink from "src/components/docs/EditLink";
 
+import { authOptions } from "../api/auth/[...nextauth]";
+
 const CodeBlock = dynamic(
   () => import("src/components/docs/elements/CodeBlock"),
-  {
-    ssr: false,
-  }
+  { ssr: false }
 );
 
-export async function getStaticPaths() {
-  const paths = allDocs.map((doc: Doc) => doc.url);
-  return { paths, fallback: false };
-}
-
-export async function getStaticProps({ params }: { params: any }) {
-  const doc = allDocs.find(
-    (doc: Doc) => doc._raw.flattenedPath === params.slug
+export async function getServerSideProps(ctx: any) {
+  const session = await unstable_getServerSession(
+    ctx.req,
+    ctx.res,
+    authOptions
   );
-  return { props: { doc } };
+
+  const doc = allDocs.find(
+    (doc: Doc) => doc._raw.flattenedPath === ctx.params.slug
+  );
+  return {
+    props: {
+      session: session ? { ...session, error: session.error ?? null } : null,
+      doc,
+    },
+  };
 }
 
 const DocLayout = ({ doc }: { doc: Doc }) => {
