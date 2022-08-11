@@ -8,7 +8,7 @@ import { dehydrate, QueryClient } from "react-query";
 import Head from "src/components/Head";
 import Page from "src/components/Page";
 import Footer from "src/components/Footer";
-import NavBar from "src/components/NavBar";
+import Navbar from "src/components/Navbar";
 import AddNewPlatformModal from "src/components/my-platforms/AddNewPlatformModal";
 import Header from "src/components/my-platforms/Header";
 import { getMyList } from "src/modules/platforms/actions";
@@ -64,7 +64,7 @@ const MyPlatforms: NextPage = () => {
       />
       <Head />
       <Page>
-        <NavBar
+        <Navbar
           onSignIn={() => signIn("soul")}
           onSignOut={signOut}
           isSignedIn={!!session}

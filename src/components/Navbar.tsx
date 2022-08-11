@@ -1,12 +1,12 @@
 import NextLink from "next/link";
 import { Button, HStack, Link } from "@chakra-ui/react";
 
-export default function NavBar({ onSignIn, isSignedIn, onSignOut }: Props) {
+export default function Navbar({ onSignIn, isSignedIn, onSignOut }: Props) {
   return (
     <HStack
       justifyContent="space-between"
       padding="32px 0px"
-      position="sticky"
+      position={["initial", "initial", "initial", "sticky", "sticky"]}
       top="0px"
       bgColor="soul.bgGrey"
       zIndex={1}
@@ -16,16 +16,16 @@ export default function NavBar({ onSignIn, isSignedIn, onSignOut }: Props) {
           <Link>Home</Link>
         </NextLink>
 
-        {/* TODO: Hidden for the time being because we don't have flushed out docs yet */}
-        {/* <NextLink passHref href="/docs/introduction">
-          <Link>Documentation</Link>
-        </NextLink> */}
-
         {isSignedIn && (
           <NextLink passHref href="/my-platforms">
-            <Link>My platforms</Link>
+            <Link>Platforms</Link>
           </NextLink>
         )}
+
+        {/* TODO: Hidden for the time being because we don't have flushed out docs yet */}
+        {/* <NextLink passHref href="/docs/introduction">
+          <Link>Docs</Link>
+        </NextLink> */}
       </HStack>
       <Button
         variant="outline"
