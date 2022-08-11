@@ -9,7 +9,7 @@ import Footer from "src/components/Footer";
 import Head from "src/components/Head";
 import Page from "src/components/Page";
 import CTAContent from "src/components/index/CTAContent";
-import NavBar from "src/components/NavBar";
+import Navbar from "src/components/Navbar";
 import AccessTokenModal from "src/components/index/AccessTokenModal";
 
 import Logo from "../../public/logo.png";
@@ -53,7 +53,7 @@ const Home: NextPage = () => {
       />
       <Head />
       <Page>
-        <NavBar
+        <Navbar
           onSignIn={() => signIn("soul")}
           onSignOut={signOut}
           isSignedIn={!!session}
