@@ -23,9 +23,9 @@ export default function Navbar({ onSignIn, isSignedIn, onSignOut }: Props) {
         )}
 
         {/* TODO: Hidden for the time being because we don't have flushed out docs yet */}
-        <NextLink passHref href="/docs/introduction">
+        {/* <NextLink passHref href="/docs/introduction">
           <Link>Docs</Link>
-        </NextLink>
+        </NextLink> */}
       </HStack>
       <Button
         variant="outline"
