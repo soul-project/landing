@@ -68,6 +68,7 @@ const DocLayout: NextPage<{ doc: Doc }> = ({ doc }) => {
           <HStack
             alignItems="flex-start"
             spacing={["0px", "0px", "0px", "20px", "20px"]}
+            w="full"
           >
             <Sidebar currentDocId={doc._id} />
             <VStack alignItems="flex-start" w="100%" spacing="64px">
