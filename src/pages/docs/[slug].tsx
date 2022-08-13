@@ -86,6 +86,7 @@ const DocLayout: NextPage<{ doc: Doc }> = ({ doc }) => {
                       li: elements.ListItem,
                       ol: elements.OrderedList,
                       ul: elements.UnorderedList,
+                      a: elements.Link,
                     }}
                   />
                 </DocStyleWrapper>
