@@ -7,3 +7,4 @@ export { default as UnorderedList } from "./UnorderedList";
 export { default as ListItem } from "./ListItem";
 export { default as Link } from "./Link";
 export { default as InlineCode } from "./InlineCode";
+export { default as Blockquote } from "./Blockquote";

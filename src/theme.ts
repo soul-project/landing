@@ -13,6 +13,7 @@ const theme = extendTheme({
       blue: "#4CC9F0",
       bgGrey: "#141516",
       borderGrey: "#4d4e4f",
+      mutedGrey: "#8b949e",
     },
   },
   config: {
