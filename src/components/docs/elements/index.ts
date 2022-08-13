@@ -6,5 +6,4 @@ export { default as OrderedList } from "./OrderedList";
 export { default as UnorderedList } from "./UnorderedList";
 export { default as ListItem } from "./ListItem";
 export { default as Link } from "./Link";
-
-// TODO: Add styles for block quotes and inline-code
+export { default as InlineCode } from "./InlineCode";
