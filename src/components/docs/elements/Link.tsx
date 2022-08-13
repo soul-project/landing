@@ -6,15 +6,13 @@ export default function Link({ children, href }: Props) {
   if (href && href.startsWith("/")) {
     return (
       <NextLink href={href} passHref>
-        <ChakraLink textDecoration="underline" color="soul.pink.200">
-          {children}
-        </ChakraLink>
+        <ChakraLink color="soul.pink.200">{children}</ChakraLink>
       </NextLink>
     );
   }
 
   return (
-    <ChakraLink href={href} textDecoration="underline" color="soul.pink.200">
+    <ChakraLink href={href} color="soul.pink.200">
       {children}
     </ChakraLink>
   );

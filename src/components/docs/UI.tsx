@@ -20,4 +20,8 @@ export const DocStyleWrapper = styled(Box)`
   li {
     margin-top: var(--chakra-space-1);
   }
+
+  code {
+    margin-top: 0px;
+  }
 `;
