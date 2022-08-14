@@ -65,3 +65,24 @@ curl --location --request PATCH 'https://api.soul-network.com/v1/users/me' \
 
 Create a new platform by navigating over to the [platforms page](/my-platforms) and clicking the "+" button. Fill up the form
 and specify a valid redirect uri such as `http://localhost:3000` for local development.
+
+### Platform customization
+
+You can customize your platform by using the following endpoint
+
+> Your access token is automatically populated if you have logged in to this site with your account.
+
+```bash
+curl --location --request PATCH 'https://api.soul-network.com/v1/platforms/<YOUR_PLATFORM_ID>' \
+--header 'Authorization: Bearer <ACCESS_TOKEN>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "<YOUR_NEW_PLATFORM_NAME>",
+    "redirect_uris": ["<LIST_OF_REDIRECT_URIS>"]
+}'
+```
+
+> Redirect uris must be in a valid format as defined by
+> [https://docs.microsoft.com/en-us/azure/active-directory/develop/reply-url](https://docs.microsoft.com/en-us/azure/active-directory/develop/reply-url)
+
+## Deploy your own application
