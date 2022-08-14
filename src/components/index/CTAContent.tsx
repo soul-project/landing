@@ -15,7 +15,7 @@ export default function CTAContent({
           <>
             Hello,{" "}
             <Text
-              color="soul.blue"
+              color="soul.pink.light"
               display="inline-block"
               textDecoration="underline"
             >
@@ -26,7 +26,7 @@ export default function CTAContent({
         ) : (
           <>
             <Text
-              color="soul.blue"
+              color="soul.pink.light"
               display="inline-block"
               textDecoration="underline"
             >

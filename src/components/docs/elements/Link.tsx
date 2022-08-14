@@ -12,7 +12,7 @@ export default function Link({ children, href }: Props) {
   }
 
   return (
-    <ChakraLink href={href} color="soul.pink.200">
+    <ChakraLink href={href} color="soul.pink.light">
       {children}
     </ChakraLink>
   );

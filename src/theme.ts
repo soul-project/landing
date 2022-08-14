@@ -4,7 +4,7 @@ const theme = extendTheme({
   colors: {
     soul: {
       pink: {
-        light: "#F72585",
+        light: "#fa4e9d",
         dark: "#B5179E",
         200: "#F72585",
         lightTranslucent: "rgba(247, 37, 133, 0.3)",
