@@ -32,7 +32,7 @@ export default function CodeBlock({ children }: Props) {
   );
 
   return (
-    <Box position="relative" role="group">
+    <Box position="relative" role="group" mt="8">
       <IconButton
         aria-label="Copy code snippet"
         icon={

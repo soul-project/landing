@@ -34,15 +34,25 @@ First, [register an account with us](https://login.soul-network.com/register) if
 
 > Follow the instructions presented on verifying your email to complete the registration process.
 
+### Retrieving my account information
+
+To retrieve more information about your account, you can use the following endpoint
+
+```bash
+curl --location --request GET 'https://api.soul-network.com/v1/users/me' \
+--header 'Authorization: Bearer <ACCESS_TOKEN>' \
+--header 'Content-Type: application/json'
+```
+
 ### Account customization
 
-You can customize your account later by accessing the following endpoint
+You can also customize your account by using the following endpoint
 
 > Your access token is automatically populated if you have logged in to this site with your account. Please change the `username` and `email` fields
 > accordingly.
 
 ```bash
-curl --location --request PATCH 'https://api.soul-network.com/v1/me' \
+curl --location --request PATCH 'https://api.soul-network.com/v1/users/me' \
 --header 'Authorization: Bearer <ACCESS_TOKEN>' \
 --header 'Content-Type: application/json' \
 --data-raw '{

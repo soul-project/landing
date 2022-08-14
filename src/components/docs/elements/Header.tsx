@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, Link, HTMLChakraProps } from "@chakra-ui/react";
 
-function Header({ children, fontSize }: Props) {
+function Header({ children, fontSize, mt }: Props) {
   const anchorElement = children[0];
   return (
     <Text
@@ -10,6 +10,7 @@ function Header({ children, fontSize }: Props) {
       fontWeight="bold"
       scrollMarginTop="110px"
       role="group"
+      mt={mt}
     >
       {children[1]}
       <Link
@@ -31,6 +32,7 @@ function Header({ children, fontSize }: Props) {
 type Props = {
   children: React.ReactElement[];
   fontSize: HTMLChakraProps<"p">["fontSize"];
+  mt: HTMLChakraProps<"p">["mt"];
 };
 
 export default Header;
