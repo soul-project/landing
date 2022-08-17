@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NextPage } from "next";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { VStack, useDisclosure } from "@chakra-ui/react";
@@ -13,6 +13,13 @@ import PlatformsList from "src/components/my-platforms/PlatformsList";
 
 const MyPlatforms: NextPage = () => {
   const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session?.error === "RefreshAccessTokenError") {
+      signOut();
+    }
+  }, [session]);
+
   const {
     isOpen: isAddNewPlatformModalOpen,
     onOpen: onOpenAddNewPlatformModal,
