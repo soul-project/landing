@@ -53,6 +53,8 @@ export default function Actions({ platformId }: Props) {
     },
   });
 
+  if (!session) return null;
+
   return (
     <>
       <EditPlatformModal
@@ -66,7 +68,7 @@ export default function Actions({ platformId }: Props) {
         isDeleting={isLoading}
         onDelete={() =>
           destroyPlatform({
-            accessToken: session!.accessToken,
+            accessToken: session?.accessToken,
             platformId,
           })
         }

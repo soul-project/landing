@@ -21,7 +21,7 @@ export default function PlatformsList() {
   const { data: session } = useSession();
 
   const args = {
-    accessToken: session!.accessToken,
+    accessToken: session?.accessToken,
   };
 
   const { data: myPlatformsList } = useQuery([getMyList.key, args], () =>

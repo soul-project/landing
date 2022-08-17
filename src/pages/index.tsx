@@ -29,11 +29,13 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <AccessTokenModal
-        isOpen={isAccessTokenModalOpen}
-        onClose={onCloseAccessTokenModal}
-        accessToken={session?.accessToken || ""}
-      />
+      {session && (
+        <AccessTokenModal
+          isOpen={isAccessTokenModalOpen}
+          onClose={onCloseAccessTokenModal}
+          accessToken={session.accessToken}
+        />
+      )}
       <Head />
       <Page>
         <Navbar
