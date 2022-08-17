@@ -4,7 +4,6 @@ import { Text, HStack, VStack } from "@chakra-ui/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import dynamic from "next/dynamic";
-import { unstable_getServerSession } from "next-auth";
 
 import { allDocs, Doc } from "contentlayer/generated";
 import Page from "src/components/Page";
@@ -19,28 +18,17 @@ import Pagination from "src/components/docs/Pagination";
 import EditLink from "src/components/docs/EditLink";
 import MobileNavbar from "src/components/docs/MobileNavbar";
 
-import { authOptions } from "../api/auth/[...nextauth]";
-
 const CodeBlock = dynamic(
   () => import("src/components/docs/elements/CodeBlock"),
   { ssr: false }
 );
 
 export async function getServerSideProps(ctx: any) {
-  const session = await unstable_getServerSession(
-    ctx.req,
-    ctx.res,
-    authOptions
-  );
-
   const doc = allDocs.find(
     (doc: Doc) => doc._raw.flattenedPath === ctx.params.slug
   );
   return {
-    props: {
-      session: session ? { ...session, error: session.error ?? null } : null,
-      doc,
-    },
+    props: { doc },
   };
 }
 

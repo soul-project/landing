@@ -25,7 +25,7 @@ export default function EditPlatformModal({
   const toast = useToast();
 
   const getPlatformArgs: GetPlatformArgs = {
-    accessToken: session!.accessToken,
+    accessToken: session?.accessToken,
     platformId,
   };
   const { data } = useQuery([getPlatform.key, getPlatformArgs], () =>
@@ -65,12 +65,14 @@ export default function EditPlatformModal({
     actions: FormikHelpers<FormValues>
   ) => {
     await updatePlatform({
-      accessToken: session!.accessToken,
+      accessToken: session?.accessToken,
       platformId,
       ...values,
     });
     actions.resetForm({ values });
   };
+
+  if (!session) return null;
 
   return (
     <PlatformFormModal
