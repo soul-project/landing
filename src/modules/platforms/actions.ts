@@ -20,7 +20,7 @@ export const create = async ({
 };
 
 export type CreateArgs = {
-  accessToken: string;
+  accessToken?: string;
   name: string;
   redirectUris: string[];
 };
@@ -51,7 +51,7 @@ export const getMyList = async ({
 getMyList.key = "modules/platforms/actions/getList";
 
 type GetMyListArgs = {
-  accessToken: string;
+  accessToken?: string;
 };
 
 type PlatformData = {
@@ -87,7 +87,7 @@ export const destroy = async ({ accessToken, platformId }: DestroyArgs) => {
 };
 
 export type DestroyArgs = {
-  accessToken: string;
+  accessToken?: string;
   platformId: number;
 };
 
@@ -111,7 +111,7 @@ export const getPlatform = async ({
 getPlatform.key = "modules/platforms/actions/getPlatform";
 
 export type GetPlatformArgs = {
-  accessToken: string;
+  accessToken?: string;
   platformId: number;
 };
 
@@ -148,7 +148,7 @@ export const update = async ({
 };
 
 export type UpdateArgs = {
-  accessToken: string;
+  accessToken?: string;
   name: string;
   redirectUris: string[];
   platformId: number;
