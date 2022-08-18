@@ -33,7 +33,6 @@ const Home: NextPage = () => {
         <AccessTokenModal
           isOpen={isAccessTokenModalOpen}
           onClose={onCloseAccessTokenModal}
-          accessToken={session.accessToken}
         />
       )}
       <Head />
