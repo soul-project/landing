@@ -1,7 +1,9 @@
 import NextLink from "next/link";
 import { Button, HStack, Link } from "@chakra-ui/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
-export default function Navbar({ onSignIn, isSignedIn, onSignOut }: Props) {
+export default function Navbar() {
+  const { data: session, status } = useSession();
   return (
     <HStack
       justifyContent="space-between"
@@ -16,7 +18,7 @@ export default function Navbar({ onSignIn, isSignedIn, onSignOut }: Props) {
           <Link>Home</Link>
         </NextLink>
 
-        {isSignedIn && (
+        {!!session && (
           <NextLink passHref href="/my-platforms">
             <Link>Platforms</Link>
           </NextLink>
@@ -29,16 +31,11 @@ export default function Navbar({ onSignIn, isSignedIn, onSignOut }: Props) {
       </HStack>
       <Button
         variant="outline"
-        onClick={() => (isSignedIn ? onSignOut() : onSignIn())}
+        onClick={() => (!!session ? signOut() : signIn("soul"))}
+        isLoading={status === "loading"}
       >
-        {isSignedIn ? "Logout" : "Login"}
+        {!!session ? "Logout" : "Login"}
       </Button>
     </HStack>
   );
 }
-
-type Props = {
-  onSignIn: () => void;
-  onSignOut: () => void;
-  isSignedIn: boolean;
-};
