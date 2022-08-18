@@ -13,13 +13,11 @@ import {
   ModalFooter,
   useClipboard,
 } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 
-export default function AccessTokenModal({
-  accessToken,
-  isOpen,
-  onClose,
-}: Props) {
-  const { hasCopied, onCopy } = useClipboard(accessToken);
+export default function AccessTokenModal({ isOpen, onClose }: Props) {
+  const { data: session } = useSession();
+  const { hasCopied, onCopy } = useClipboard(session?.accessToken || "");
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -32,7 +30,7 @@ export default function AccessTokenModal({
             <Input
               pr="66px"
               type="text"
-              value={accessToken}
+              value={session?.accessToken}
               contentEditable={false}
             />
             <InputRightElement width="4.5rem">
@@ -49,7 +47,6 @@ export default function AccessTokenModal({
 }
 
 type Props = {
-  accessToken: string;
   isOpen: boolean;
   onClose: () => void;
 };
