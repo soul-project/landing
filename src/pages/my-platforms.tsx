@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { VStack, useDisclosure } from "@chakra-ui/react";
 
 import Head from "src/components/Head";
@@ -12,7 +12,7 @@ import Header from "src/components/my-platforms/Header";
 import PlatformsList from "src/components/my-platforms/PlatformsList";
 
 const MyPlatforms: NextPage = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     if (session?.error === "RefreshAccessTokenError") {
@@ -34,15 +34,13 @@ const MyPlatforms: NextPage = () => {
       />
       <Head />
       <Page>
-        <Navbar
-          onSignIn={() => signIn("soul")}
-          onSignOut={signOut}
-          isSignedIn={!!session}
-        />
-        <VStack alignItems="flex-start">
-          <Header onOpen={onOpenAddNewPlatformModal} />
-          <PlatformsList />
-        </VStack>
+        <Navbar />
+        {status !== "loading" && (
+          <VStack alignItems="flex-start">
+            <Header onOpen={onOpenAddNewPlatformModal} />
+            <PlatformsList />
+          </VStack>
+        )}
       </Page>
       <Footer />
     </>
