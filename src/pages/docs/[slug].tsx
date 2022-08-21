@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { NextPage } from "next";
 import { Text, HStack, VStack } from "@chakra-ui/react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import dynamic from "next/dynamic";
 
@@ -33,7 +33,7 @@ export async function getServerSideProps(ctx: any) {
 }
 
 const DocLayout: NextPage<{ doc: Doc }> = ({ doc }) => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const MDXContent = useMDXComponent(doc.body.code);
 
   useEffect(() => {
@@ -46,47 +46,45 @@ const DocLayout: NextPage<{ doc: Doc }> = ({ doc }) => {
     <>
       <Head subTitle="Documentation" />
       <Page>
-        <Navbar
-          onSignIn={() => signIn("soul")}
-          onSignOut={signOut}
-          isSignedIn={!!session}
-        />
+        <Navbar />
         <VStack w="full" spacing="24px">
           <MobileNavbar currentDocId={doc._id} />
-          <HStack
-            alignItems="flex-start"
-            spacing={["0px", "0px", "0px", "20px", "20px"]}
-            w="full"
-          >
-            <Sidebar currentDocId={doc._id} />
-            <VStack alignItems="flex-start" w="100%" spacing="64px">
-              <VStack alignItems="flex-start" w="100%" flexShrink={2}>
-                <Text fontSize="4xl" fontWeight="bold">
-                  {doc.title}
-                </Text>
-                <DocStyleWrapper>
-                  <MDXContent
-                    components={{
-                      pre: CodeBlock,
-                      h1: elements.H1,
-                      h2: elements.H2,
-                      h3: elements.H3,
-                      li: elements.ListItem,
-                      ol: elements.OrderedList,
-                      ul: elements.UnorderedList,
-                      a: elements.Link,
-                      code: elements.InlineCode,
-                      blockquote: elements.Blockquote,
-                      p: elements.Paragraph,
-                    }}
-                  />
-                </DocStyleWrapper>
+          {status !== "loading" && (
+            <HStack
+              alignItems="flex-start"
+              spacing={["0px", "0px", "0px", "20px", "20px"]}
+              w="full"
+            >
+              <Sidebar currentDocId={doc._id} />
+              <VStack alignItems="flex-start" w="100%" spacing="64px">
+                <VStack alignItems="flex-start" w="100%" flexShrink={2}>
+                  <Text fontSize="4xl" fontWeight="bold">
+                    {doc.title}
+                  </Text>
+                  <DocStyleWrapper>
+                    <MDXContent
+                      components={{
+                        pre: CodeBlock,
+                        h1: elements.H1,
+                        h2: elements.H2,
+                        h3: elements.H3,
+                        li: elements.ListItem,
+                        ol: elements.OrderedList,
+                        ul: elements.UnorderedList,
+                        a: elements.Link,
+                        code: elements.InlineCode,
+                        blockquote: elements.Blockquote,
+                        p: elements.Paragraph,
+                      }}
+                    />
+                  </DocStyleWrapper>
+                </VStack>
+                {doc.editUrl && <EditLink href={doc.editUrl} />}
+                <Pagination currentDocId={doc._id} />
               </VStack>
-              {doc.editUrl && <EditLink href={doc.editUrl} />}
-              <Pagination currentDocId={doc._id} />
-            </VStack>
-            <TOCBar headers={doc.headerList} />
-          </HStack>
+              <TOCBar headers={doc.headerList} />
+            </HStack>
+          )}
         </VStack>
       </Page>
       <Footer />
