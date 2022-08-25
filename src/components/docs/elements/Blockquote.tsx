@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 
-export default function Blockquote({ children }: Props) {
+export default function Blockquote({ children }: React.PropsWithChildren) {
   return (
     <Box
       padding="0 16px"
@@ -12,7 +12,3 @@ export default function Blockquote({ children }: Props) {
     </Box>
   );
 }
-
-type Props = {
-  children: React.ReactElement[];
-};
