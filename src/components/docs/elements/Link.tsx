@@ -1,0 +1,26 @@
+import React from "react";
+import { Link as ChakraLink } from "@chakra-ui/react";
+import NextLink from "next/link";
+
+export default function Link({
+  children,
+  href,
+}: React.PropsWithChildren<Props>) {
+  if (href && href.startsWith("/")) {
+    return (
+      <NextLink href={href} passHref>
+        <ChakraLink color="soul.pink.200">{children}</ChakraLink>
+      </NextLink>
+    );
+  }
+
+  return (
+    <ChakraLink href={href} color="soul.pink.light">
+      {children}
+    </ChakraLink>
+  );
+}
+
+type Props = {
+  href?: string;
+};

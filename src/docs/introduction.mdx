@@ -1,42 +1,86 @@
 ---
-title: Introduction
+title: Getting started
 sidebarPosition: 1
 editUrl: https://github.com/soul-project/landing/blob/main/src/docs/introduction.mdx
 ---
 
-## Title
+# Overview
 
-Ullamco et nostrud magna commodo nostrud occaecat quis pariatur id ipsum. Ipsum
-consequat enim id excepteur consequat nostrud esse esse fugiat dolore.
-Reprehenderit occaecat exercitation non cupidatat in eiusmod laborum ex eu
-fugiat aute culpa pariatur. Irure elit proident consequat veniam minim ipsum ex
-pariatur.
+Soul is an authentication provider and identity provider built for a federated social media eco-system.
+It is meant to abstract some of the most important parts of a social media platform
+(i.e. user connections, relationships and authentication) into a separate service so that it can be
+shared across different social media platforms as long as they are using soul to authenticate and
+build user connections.
 
-Mollit nisi cillum exercitation minim officia velit laborum non Lorem
-adipisicing dolore. Labore commodo consectetur commodo velit adipisicing irure
-dolore dolor reprehenderit aliquip. Reprehenderit cillum mollit eiusmod
-excepteur elit ipsum aute pariatur in. Cupidatat ex culpa velit culpa ad non
-labore exercitation irure laborum.
+## The Philosophy
+
+We believe that connections and reputation are what defines a person, user or a soul in the cyberspace (maybe in the real world too 🤔).
+
+This service attempts to federate some parts of a social media platform.
+Newer platforms can be created and maintained without having to start from a fresh user base.
+On the other hand, Soul members would not have to start from scratch in an entirely new social media platform as
+they would be able to transfer their connections across all platforms which uses Soul to authenticate.
+You'll be moving across different worlds/ dimensions while preserving your soul!
+
+## TLDR
+
+Don't let Facebook, Twitter, TikTok and Reddit monopolize the social media space, start your own platform!
+
+# Get started with Soul now!
+
+## Registration
+
+First, [register an account with us](https://login.soul-network.com/register) if you do not have an account yet.
+
+> Follow the instructions presented on verifying your email to complete the registration process.
+
+### Retrieving my account information
+
+To retrieve more information about your account, you can use the following endpoint
 
 ```bash
-curl --location --request GET 'https://api.soul-network.com/v1/users'
+curl --location --request GET 'https://api.soul-network.com/v1/users/me' \
+--header 'Authorization: Bearer <ACCESS_TOKEN>' \
+--header 'Content-Type: application/json'
 ```
+
+### Account customization
+
+You can also customize your account by using the following endpoint
+
+> Your access token is automatically populated if you have logged in to this site with your account. Please change the `username` and `email` fields
+> accordingly.
 
 ```bash
-curl --location --request GET 'https://api.soul-network.com/v1/platforms/my-platforms?role=admin' \
---header 'Authorization: Bearer <ACCESS_TOKEN>'
+curl --location --request PATCH 'https://api.soul-network.com/v1/users/me' \
+--header 'Authorization: Bearer <ACCESS_TOKEN>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username": "<YOUR_NEW_USERNAME>",
+    "email": "<YOUR_NEW_EMAIL>"
+}'
 ```
 
-### Subtitle
+## Create a new platform
 
-This is cool beans
+Create a new platform by navigating over to the [platforms page](/my-platforms) and clicking the "+" button. Fill up the form
+and specify a valid redirect uri such as `http://localhost:3000` for local development.
 
-- item 1
-- item 2
-- item 3
+### Platform customization
 
-Another list:
+You can customize your platform by using the following endpoint
 
-1. item 1
-2. item 2
-3. item 3
+> Your access token is automatically populated if you have logged in to this site with your account.
+
+```bash
+curl --location --request PATCH 'https://api.soul-network.com/v1/platforms/<YOUR_PLATFORM_ID>' \
+--header 'Authorization: Bearer <ACCESS_TOKEN>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "<YOUR_NEW_PLATFORM_NAME>",
+    "redirect_uris": ["<LIST_OF_REDIRECT_URIS>"]
+}'
+```
+
+> Redirect uris must be in a valid format as defined by
+> [https://docs.microsoft.com/en-us/azure/active-directory/develop/reply-url](https://docs.microsoft.com/en-us/azure/active-directory/develop/reply-url)
