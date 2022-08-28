@@ -27,6 +27,9 @@ export async function getServerSideProps(ctx: any) {
   const doc = allDocs.find(
     (doc: Doc) => doc._raw.flattenedPath === ctx.params.slug
   );
+  if (!doc) {
+    return { notFound: true };
+  }
   return {
     props: { doc },
   };
