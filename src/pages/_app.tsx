@@ -4,15 +4,24 @@ import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import NextNProgress from "nextjs-progressbar";
+import { initializeApp } from "firebase/app";
+import { getAnalytics, isSupported } from "firebase/analytics";
 
 import theme from "src/theme";
 import "src/styles/prism-one-dark.css";
+
+import { firebaseConfig } from "../config/firebaseConfig";
 
 function MyApp({
   Component,
   pageProps: { session, dehydratedState, ...pageProps },
 }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
+
+  if (typeof window !== undefined && firebaseConfig.apiKey) {
+    const app = initializeApp(firebaseConfig);
+    isSupported().then((yes) => (yes ? getAnalytics(app) : null));
+  }
 
   return (
     <SessionProvider session={session}>
