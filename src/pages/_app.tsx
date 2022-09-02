@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChakraProvider, CSSReset } from "@chakra-ui/react";
 import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import NextNProgress from "nextjs-progressbar";
 import { initializeApp } from "firebase/app";
-import { getAnalytics, isSupported } from "firebase/analytics";
+import { initializeAnalytics } from "firebase/analytics";
+import { initializePerformance } from "firebase/performance";
 
 import theme from "src/theme";
 import "src/styles/prism-one-dark.css";
@@ -18,10 +19,13 @@ function MyApp({
 }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
 
-  if (typeof window !== undefined && firebaseConfig.apiKey) {
-    const app = initializeApp(firebaseConfig);
-    isSupported().then((yes) => (yes ? getAnalytics(app) : null));
-  }
+  useEffect(() => {
+    if (typeof window !== undefined && firebaseConfig.apiKey) {
+      const app = initializeApp(firebaseConfig);
+      initializeAnalytics(app);
+      initializePerformance(app);
+    }
+  }, []);
 
   return (
     <SessionProvider session={session}>
