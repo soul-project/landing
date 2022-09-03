@@ -1,4 +1,5 @@
 import { Button, Text, Link, Box, Stack } from "@chakra-ui/react";
+import NextLink from "next/link";
 
 export default function CTAContent({
   username,
@@ -41,7 +42,7 @@ export default function CTAContent({
           Soul is a user authentication and identity provider built for a
           federated social media eco-system 🤲. We&apos;ll be in touch with you
           shortly. In the meantime, check out our docs by clicking on{" "}
-          <strong>&quot;Integrate with us!&quot;</strong> button below.
+          <strong>&quot;Get started!&quot;</strong> button below.
         </Text>
       ) : (
         <Text maxW="500px" textAlign={["center", "center", "left"]}>
@@ -67,14 +68,11 @@ export default function CTAContent({
             </Button>
           </Link>
         )}
-        <Link
-          href="https://api.soul-network.com/docs"
-          _hover={{ textDecoration: "initial" }}
-          display="inline-block"
-          target="_blank"
-        >
-          <Button type="button">Integrate with us!</Button>
-        </Link>
+        <NextLink passHref href="/docs/introduction">
+          <Link _hover={{ textDecoration: "initial" }} display="inline-block">
+            <Button type="button">Get started!</Button>
+          </Link>
+        </NextLink>
         {username && (
           <Button type="button" onClick={onShowAccessTokenModal}>
             Access Token
