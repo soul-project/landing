@@ -24,6 +24,7 @@ export default function PlatformFormModal({
   initialValues,
   title,
 }: Props) {
+  // FIXME: Fix spinner placement
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />

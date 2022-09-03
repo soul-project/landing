@@ -25,5 +25,30 @@ export default async function handler(
     return res.status(status).json(data);
   }
 
-  return res.status(404);
+  if (req.method === "PATCH") {
+    const { id } = req.query;
+    const session = await unstable_getServerSession(req, res, authOptions);
+
+    const { status, data } = await axios.patch(
+      `${PLATFORMS_API}/${id}`,
+      req.body,
+      {
+        headers: { Authorization: `Bearer ${session?.accessToken}` },
+      }
+    );
+
+    return res.status(status).json(data);
+  }
+
+  if (req.method === "DELETE") {
+    const { id } = req.query;
+    const session = await unstable_getServerSession(req, res, authOptions);
+    const { status, data } = await axios.delete(`${PLATFORMS_API}/${id}`, {
+      headers: { Authorization: `Bearer ${session?.accessToken}` },
+    });
+
+    return res.status(status).json(data);
+  }
+
+  return res.status(404).json({});
 }

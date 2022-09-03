@@ -1,14 +1,12 @@
 import axios from "axios";
 
-const PLATFORMS_API = "https://api.soul-network.com/v1/platforms";
-
 export const create = async ({
   accessToken,
   name,
   redirectUris,
 }: CreateArgs) => {
   return axios.post(
-    PLATFORMS_API,
+    "/api/platforms",
     {
       name,
       redirect_uris: redirectUris,
@@ -72,7 +70,7 @@ type PlatformList = {
 };
 
 export const destroy = async ({ accessToken, platformId }: DestroyArgs) => {
-  return axios.delete(`${PLATFORMS_API}/${platformId}`, {
+  return axios.delete(`/api/platforms/${platformId}`, {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
 };
@@ -118,25 +116,17 @@ type PlatformFull = {
 };
 
 export const update = async ({
-  accessToken,
   name,
   redirectUris,
   platformId,
 }: UpdateArgs) => {
-  return axios.patch(
-    `${PLATFORMS_API}/${platformId}`,
-    {
-      name,
-      redirect_uris: redirectUris,
-    },
-    {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    }
-  );
+  return axios.patch(`/api/platforms/${platformId}`, {
+    name,
+    redirect_uris: redirectUris,
+  });
 };
 
 export type UpdateArgs = {
-  accessToken?: string;
   name: string;
   redirectUris: string[];
   platformId: number;

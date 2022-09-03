@@ -64,7 +64,6 @@ export default function EditPlatformModal({
     actions: FormikHelpers<FormValues>
   ) => {
     await updatePlatform({
-      accessToken: session?.accessToken,
       platformId,
       ...values,
     });

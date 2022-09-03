@@ -28,6 +28,7 @@ export default function PlatformsList() {
       </Center>
     );
 
+  // FIXME: Fix table sizing
   return (
     <TableContainer w="100%">
       <Table variant="simple" size="lg">
