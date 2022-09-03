@@ -1,14 +1,12 @@
 import axios from "axios";
 
-const PLATFORMS_API = "https://api.soul-network.com/v1/platforms";
-
 export const create = async ({
   accessToken,
   name,
   redirectUris,
 }: CreateArgs) => {
   return axios.post(
-    PLATFORMS_API,
+    "/api/platforms",
     {
       name,
       redirect_uris: redirectUris,
@@ -25,15 +23,10 @@ export type CreateArgs = {
   redirectUris: string[];
 };
 
-export const getMyList = async ({
-  accessToken,
-}: GetMyListArgs): Promise<PlatformList> => {
+export const getMyList = async (): Promise<PlatformList> => {
   const { data } = await axios.get<PlatformListData>(
-    `${PLATFORMS_API}/my-platforms`,
-    {
-      params: { role: "admin" },
-      headers: { Authorization: `Bearer ${accessToken}` },
-    }
+    "/api/platforms/my-platforms",
+    { params: { role: "admin" } }
   );
 
   return {
@@ -49,10 +42,6 @@ export const getMyList = async ({
 };
 
 getMyList.key = "modules/platforms/actions/getList";
-
-type GetMyListArgs = {
-  accessToken?: string;
-};
 
 type PlatformData = {
   id: number;
@@ -81,7 +70,7 @@ type PlatformList = {
 };
 
 export const destroy = async ({ accessToken, platformId }: DestroyArgs) => {
-  return axios.delete(`${PLATFORMS_API}/${platformId}`, {
+  return axios.delete(`/api/platforms/${platformId}`, {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
 };
@@ -92,12 +81,10 @@ export type DestroyArgs = {
 };
 
 export const getPlatform = async ({
-  accessToken,
   platformId,
 }: GetPlatformArgs): Promise<PlatformFull> => {
   const { data } = await axios.get<PlatformFullData>(
-    `${PLATFORMS_API}/${platformId}/full`,
-    { headers: { Authorization: `Bearer ${accessToken}` } }
+    `/api/platforms/${platformId}`
   );
 
   return {
@@ -111,7 +98,6 @@ export const getPlatform = async ({
 getPlatform.key = "modules/platforms/actions/getPlatform";
 
 export type GetPlatformArgs = {
-  accessToken?: string;
   platformId: number;
 };
 
@@ -130,25 +116,17 @@ type PlatformFull = {
 };
 
 export const update = async ({
-  accessToken,
   name,
   redirectUris,
   platformId,
 }: UpdateArgs) => {
-  return axios.patch(
-    `${PLATFORMS_API}/${platformId}`,
-    {
-      name,
-      redirect_uris: redirectUris,
-    },
-    {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    }
-  );
+  return axios.patch(`/api/platforms/${platformId}`, {
+    name,
+    redirect_uris: redirectUris,
+  });
 };
 
 export type UpdateArgs = {
-  accessToken?: string;
   name: string;
   redirectUris: string[];
   platformId: number;
