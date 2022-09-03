@@ -9,6 +9,7 @@ import {
   ModalFooter,
   Button,
   Spinner,
+  Center,
 } from "@chakra-ui/react";
 import { Formik, Form, FormikHelpers } from "formik";
 
@@ -24,7 +25,6 @@ export default function PlatformFormModal({
   initialValues,
   title,
 }: Props) {
-  // FIXME: Fix spinner placement
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -58,7 +58,9 @@ export default function PlatformFormModal({
             )}
           </Formik>
         ) : (
-          <Spinner mt="30px" />
+          <Center paddingY="30px">
+            <Spinner />
+          </Center>
         )}
       </ModalContent>
     </Modal>
