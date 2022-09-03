@@ -25,15 +25,10 @@ export type CreateArgs = {
   redirectUris: string[];
 };
 
-export const getMyList = async ({
-  accessToken,
-}: GetMyListArgs): Promise<PlatformList> => {
+export const getMyList = async (): Promise<PlatformList> => {
   const { data } = await axios.get<PlatformListData>(
-    `${PLATFORMS_API}/my-platforms`,
-    {
-      params: { role: "admin" },
-      headers: { Authorization: `Bearer ${accessToken}` },
-    }
+    "/api/platforms/my-platforms",
+    { params: { role: "admin" } }
   );
 
   return {
@@ -49,10 +44,6 @@ export const getMyList = async ({
 };
 
 getMyList.key = "modules/platforms/actions/getList";
-
-type GetMyListArgs = {
-  accessToken?: string;
-};
 
 type PlatformData = {
   id: number;
@@ -92,12 +83,10 @@ export type DestroyArgs = {
 };
 
 export const getPlatform = async ({
-  accessToken,
   platformId,
 }: GetPlatformArgs): Promise<PlatformFull> => {
   const { data } = await axios.get<PlatformFullData>(
-    `${PLATFORMS_API}/${platformId}/full`,
-    { headers: { Authorization: `Bearer ${accessToken}` } }
+    `/api/platforms/${platformId}`
   );
 
   return {
@@ -111,7 +100,6 @@ export const getPlatform = async ({
 getPlatform.key = "modules/platforms/actions/getPlatform";
 
 export type GetPlatformArgs = {
-  accessToken?: string;
   platformId: number;
 };
 

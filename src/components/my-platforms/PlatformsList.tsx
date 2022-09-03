@@ -10,7 +10,6 @@ import {
   Tbody,
   Td,
 } from "@chakra-ui/react";
-import { useSession } from "next-auth/react";
 import { useQuery } from "react-query";
 
 import { getMyList } from "src/modules/platforms/actions";
@@ -18,14 +17,8 @@ import { getMyList } from "src/modules/platforms/actions";
 import Actions from "./PlatformsList/Actions";
 
 export default function PlatformsList() {
-  const { data: session } = useSession();
-
-  const args = {
-    accessToken: session?.accessToken,
-  };
-
-  const { data: myPlatformsList } = useQuery([getMyList.key, args], () =>
-    getMyList(args)
+  const { data: myPlatformsList } = useQuery([getMyList.key], () =>
+    getMyList()
   );
 
   if (!myPlatformsList)

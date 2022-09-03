@@ -25,7 +25,6 @@ export default function EditPlatformModal({
   const toast = useToast();
 
   const getPlatformArgs: GetPlatformArgs = {
-    accessToken: session?.accessToken,
     platformId,
   };
   const { data } = useQuery([getPlatform.key, getPlatformArgs], () =>
