@@ -1,10 +1,10 @@
 import React from "react";
-import { Box, VStack, Text, Link } from "@chakra-ui/react";
-import NextLink from "next/link";
+import { Box, VStack, Text, Divider } from "@chakra-ui/react";
 
 import { allDocs } from "contentlayer/generated";
 
 import { sortDocs } from "./utils";
+import DocLink from "./Shared/DocLink";
 
 export default function Sidebar({ currentDocId }: Props) {
   return (
@@ -22,21 +22,18 @@ export default function Sidebar({ currentDocId }: Props) {
           Documentation
         </Text>
         {sortDocs(allDocs).map((doc) => (
-          <NextLink passHref href={doc.url} key={doc._id}>
-            <Link
-              _hover={{ textDecoration: "none" }}
-              fontWeight={currentDocId === doc._id ? "bold" : "normal"}
-              bgColor={
-                currentDocId === doc._id ? "soul.pink.lightTranslucent" : "none"
-              }
-              padding="4px 8px"
-              w="100%"
-              borderRadius="md"
-            >
-              {doc.title}
-            </Link>
-          </NextLink>
+          <DocLink
+            href={doc.url}
+            key={doc._id}
+            isSelected={currentDocId === doc._id}
+            label={doc.title}
+          />
         ))}
+        <Divider />
+        <DocLink
+          href="https://api.soul-network.com/docs"
+          label="API References"
+        />
       </VStack>
     </Box>
   );
