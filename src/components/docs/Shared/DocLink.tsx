@@ -1,14 +1,9 @@
 import { Link as ChakraLink } from "@chakra-ui/react";
 import NextLink from "next/link";
 
-export default function DocLink({
-  key,
-  href,
-  isSelected = false,
-  label,
-}: Props) {
+export default function DocLink({ href, isSelected = false, label }: Props) {
   return (
-    <NextLink passHref href={href} key={key}>
+    <NextLink passHref href={href}>
       <ChakraLink
         _hover={{ textDecoration: "none" }}
         fontWeight={isSelected ? "bold" : "normal"}
@@ -26,7 +21,6 @@ export default function DocLink({
 
 type Props = {
   href: string;
-  key?: string;
   label: string;
   isSelected?: boolean;
 };
