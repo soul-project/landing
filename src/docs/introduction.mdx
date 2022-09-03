@@ -26,7 +26,7 @@ You'll be moving across different worlds/ dimensions while preserving your soul!
 
 Don't let Facebook, Twitter, TikTok and Reddit monopolize the social media space, start your own platform!
 
-# Get started with Soul now!
+# Get started with Soul
 
 ## Registration
 
@@ -84,3 +84,20 @@ curl --location --request PATCH 'https://api.soul-network.com/v1/platforms/<YOUR
 
 > Redirect uris must be in a valid format as defined by
 > [https://docs.microsoft.com/en-us/azure/active-directory/develop/reply-url](https://docs.microsoft.com/en-us/azure/active-directory/develop/reply-url)
+
+## Integrate with your own project
+
+Soul uses OAuth 2.0 to authenticate users on third party platforms.
+To provide Soul users access to your platform, check out our example app [twitter-clone](https://github.com/soul-project/twitter-clone).
+
+This Twitter clone app uses nextauth with custom OAuth provider to authenticate Soul users to the platform. Once authenticate, users will be able to acecss
+their profile and connections list from within the third party application.
+
+Alternatively, you could try deploying a sample of your own twitter-clone using the
+"Deploy" button on that [repo](https://github.com/soul-project/twitter-clone)
+and it will deploy a sample app using Vercel.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsoul-project%2Ftwitter-clone%2Ftree%2Fmain&env=SOUL_PLATFORM_ID,NEXTAUTH_SECRET,NEXTAUTH_URL,DB_NAME)
+
+> Do note that data on that platform is not persistent
+> unless an accompanying CouchDB instance is specified.

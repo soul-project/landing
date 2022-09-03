@@ -15,7 +15,7 @@ export default function Link({
   }
 
   return (
-    <ChakraLink href={href} color="soul.pink.light">
+    <ChakraLink href={href} target="_blank" color="soul.pink.light">
       {children}
     </ChakraLink>
   );
