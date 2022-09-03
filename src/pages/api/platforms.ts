@@ -4,7 +4,7 @@ import { unstable_getServerSession } from "next-auth/next";
 
 import { authOptions } from "./auth/[...nextauth]";
 
-const PLATFORMS_API = "https://api.soul-network.com/v1/platforms";
+import { PLATFORMS_API } from "./platforms/constants";
 
 export default async function handler(
   req: NextApiRequest,
