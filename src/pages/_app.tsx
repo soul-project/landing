@@ -20,13 +20,6 @@ function MyApp({
   const [queryClient] = useState(() => new QueryClient());
 
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(firebaseConfig);
-    // eslint-disable-next-line no-console
-    console.log(
-      process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-      process.env.NEXT_PUBLIC_SENTRY_DSN
-    );
     if (typeof window !== undefined && firebaseConfig.apiKey) {
       const app = initializeApp(firebaseConfig);
       initializeAnalytics(app);
