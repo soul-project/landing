@@ -78,6 +78,12 @@ const DocLayout: NextPage<{ doc: Doc }> = ({ doc }) => {
                         code: elements.InlineCode,
                         blockquote: elements.Blockquote,
                         p: elements.Paragraph,
+                        table: elements.Table,
+                        thead: elements.THead,
+                        tr: elements.Tr,
+                        th: elements.Th,
+                        tbody: elements.TBody,
+                        td: elements.Td,
                       }}
                     />
                   </DocStyleWrapper>

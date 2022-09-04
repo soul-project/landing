@@ -68,7 +68,7 @@ export default function CTAContent({
             </Button>
           </Link>
         )}
-        <NextLink passHref href="/docs/introduction">
+        <NextLink passHref href="/docs/getting-started">
           <Link _hover={{ textDecoration: "initial" }} display="inline-block">
             <Button type="button">Get started!</Button>
           </Link>
