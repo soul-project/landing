@@ -10,10 +10,20 @@ Soul uses role-based access control to define who has access to configure the pl
 
 ## Roles
 
-{/* TODO: Include table of roles here */}
-
 | role / permissions | login | configure platform | promote / demote members |
 | ------------------ | ----- | ------------------ | ------------------------ |
 | admin              | ✅    | ✅                 | ✅                       |
 | member             | ✅    | ❌                 | ❌                       |
 | banned             | ❌    | ❌                 | ❌                       |
+
+## Setting a user role
+
+Admins can set user roles for a specific user by making use of the platforms users.
+A list of roles (separated by commas) can be specified for a specific user.
+
+```bash
+curl --location --request PUT 'https://api.soul-network.com/v1/platforms/<YOUR_PLATFORM_ID>/users/<TARGET_USER_ID>?roles=admin,member' \
+--header 'Authorization: Bearer <ACCESS_TOKEN>'
+```
+
+> Make sure to replace `YOUR_PLATFORM_ID` and `TARGET_USER_ID` placeholders with your intended paramters.
