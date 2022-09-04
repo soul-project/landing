@@ -5,5 +5,5 @@ export default function TBody({ children }: Props) {
 }
 
 type Props = {
-  children: React.ReactElement[];
+  children: React.ReactElement[] | React.ReactElement;
 };

@@ -9,5 +9,5 @@ export default function Table({ children }: Props) {
 }
 
 type Props = {
-  children: React.ReactElement[];
+  children: React.ReactElement[] | React.ReactElement;
 };
