@@ -24,7 +24,7 @@ export default function Navbar() {
           </NextLink>
         )}
 
-        <NextLink passHref href="/docs/introduction">
+        <NextLink passHref href="/docs/getting-started">
           <Link>Docs</Link>
         </NextLink>
       </HStack>

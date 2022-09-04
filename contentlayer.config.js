@@ -1,6 +1,7 @@
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import remarkGfm from "remark-gfm";
 
 function getAnchor(text) {
   return text
@@ -72,5 +73,8 @@ export const Doc = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: "src/docs",
   documentTypes: [Doc],
-  mdx: { rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings] },
+  mdx: {
+    rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+    remarkPlugins: [remarkGfm],
+  },
 });

@@ -33,6 +33,7 @@
     "react-string-replace": "^1.1.0",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-slug": "^5.0.1",
+    "remark-gfm": "^3.0.1",
     "sharp": "^0.30.7",
     "yup": "^0.32.11"
   },
