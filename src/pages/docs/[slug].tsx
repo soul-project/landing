@@ -59,8 +59,13 @@ const DocLayout: NextPage<{ doc: Doc }> = ({ doc }) => {
               w="full"
             >
               <Sidebar currentDocId={doc._id} />
-              <VStack alignItems="flex-start" w="100%" spacing="64px">
-                <VStack alignItems="flex-start" w="100%" flexShrink={2}>
+              <VStack
+                alignItems="flex-start"
+                w="full"
+                spacing="64px"
+                overflowY="auto"
+              >
+                <VStack alignItems="flex-start" w="full" flexShrink={2}>
                   <Text fontSize="4xl" fontWeight="bold">
                     {doc.title}
                   </Text>

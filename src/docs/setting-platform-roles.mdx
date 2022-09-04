@@ -12,7 +12,8 @@ Soul uses role-based access control to define who has access to configure the pl
 
 {/* TODO: Include table of roles here */}
 
-|     | b   | a   | !   |
-| --- | --- | --- | --- |
-| 0   | 1   | 0   | 0   |
-| 1   | 0   | 2   | 0   |
+| role / permissions | login | configure platform | promote / demote members |
+| ------------------ | ----- | ------------------ | ------------------------ |
+| admin              | ✅    | ✅                 | ✅                       |
+| member             | ✅    | ❌                 | ❌                       |
+| banned             | ❌    | ❌                 | ❌                       |
