@@ -4,10 +4,29 @@ sidebarPosition: 3
 editUrl: https://github.com/soul-project/landing/blob/main/src/docs/following-users.mdx
 ---
 
-# Overview
+## Overview
 
 Soul is not only an authentication provider for multiple platforms, it comes with social features
 which allows you to follow / friend other members too (irregardless of platforms).
+
+Connections to other users in the form of a `follower`, `following` or `mutual` relationship is managed
+by the `/user-connections` suite. Everything is defined as a uni-directional user connection with a specified `from_user` and `to_user`.
+
+> When designing this endpoint, generic terms were used instead of more platform-specific ones. This is to accommodate the different
+> kinds of platforms that can be built with Soul.
+
+### Follower
+
+A `follower` type user connection refers to all user connections with the `to_user` field set to you.
+
+### Following
+
+A `following` type user connection refers to all user connections with the `from_user` set to you.
+
+### Mutual
+
+A `mutual` type user connection refers to all user connections where an opposite connection exists.
+Basically, you have to be a follower of another member and you must follow that member to achieve a mutual connection status.
 
 ## Following other members
 
