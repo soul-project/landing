@@ -10,15 +10,15 @@ Soul uses role-based access control to define who has access to configure the pl
 
 ## Roles
 
-| role / permissions | login | configure platform | promote / demote members |
-| ------------------ | ----- | ------------------ | ------------------------ |
-| admin              | ✅    | ✅                 | ✅                       |
-| member             | ✅    | ❌                 | ❌                       |
-| banned             | ❌    | ❌                 | ❌                       |
+| role / permissions | login | configure | promote | demote |
+| ------------------ | ----- | --------- | ------- | ------ |
+| admin              | ✅    | ✅        | ✅      | ✅     |
+| member             | ✅    | ❌        | ❌      | ❌     |
+| banned             | ❌    | ❌        | ❌      | ❌     |
 
 ## Setting a user role
 
-Admins can set user roles for a specific user by making use of the platforms users.
+Admins can set user roles for a specific user by making use of the `/platforms` endpoint.
 A list of roles (separated by commas) can be specified for a specific user.
 
 ```bash
