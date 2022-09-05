@@ -2,6 +2,7 @@ import { defineDocumentType, makeSource } from "contentlayer/source-files";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkGfm from "remark-gfm";
+import { rehypeAccessibleEmojis } from "rehype-accessible-emojis";
 
 function getAnchor(text) {
   return text
@@ -74,7 +75,7 @@ export default makeSource({
   contentDirPath: "src/docs",
   documentTypes: [Doc],
   mdx: {
-    rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+    rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypeAccessibleEmojis],
     remarkPlugins: [remarkGfm],
   },
 });
