@@ -4,21 +4,21 @@ sidebarPosition: 2
 editUrl: https://github.com/soul-project/landing/blob/main/src/docs/setting-platform-roles.mdx
 ---
 
-# Overview
+## Overview
 
 Soul uses role-based access control to define who has access to configure the platform or promote a member to an admin.
 
 ## Roles
 
-| role / permissions | login | configure platform | promote / demote members |
-| ------------------ | ----- | ------------------ | ------------------------ |
-| admin              | ✅    | ✅                 | ✅                       |
-| member             | ✅    | ❌                 | ❌                       |
-| banned             | ❌    | ❌                 | ❌                       |
+| role / permissions | login | configure | promote | demote |
+| ------------------ | ----- | --------- | ------- | ------ |
+| admin              | ✅    | ✅        | ✅      | ✅     |
+| member             | ✅    | ❌        | ❌      | ❌     |
+| banned             | ❌    | ❌        | ❌      | ❌     |
 
 ## Setting a user role
 
-Admins can set user roles for a specific user by making use of the platforms users.
+Admins can set user roles for a specific user by making use of the `/platforms` endpoint.
 A list of roles (separated by commas) can be specified for a specific user.
 
 ```bash
