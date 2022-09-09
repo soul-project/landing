@@ -4,7 +4,7 @@ import Header from "./Header";
 
 function H3({ children }: Props) {
   return (
-    <Header fontSize="xl" mt="3rem">
+    <Header fontSize="xl" mt="2rem">
       {children}
     </Header>
   );
