@@ -7,7 +7,7 @@ export default function Footer() {
         <Box margin="16px 0px" padding="8px 16px" width="100%">
           <Stack direction={["column", "row"]} gap={4} justifyContent="center">
             <Link
-              href="https://api.soul-network.com/docs"
+              href="https://soul.readme.io/reference"
               target="_blank"
               whiteSpace="nowrap"
             >
