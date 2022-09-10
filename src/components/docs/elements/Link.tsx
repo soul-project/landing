@@ -6,16 +6,29 @@ export default function Link({
   children,
   href,
 }: React.PropsWithChildren<Props>) {
+  const commonProps: React.ComponentProps<typeof ChakraLink> = {};
+
+  if (typeof children === "object") {
+    commonProps["display"] = "inline-block";
+  }
+
   if (href && href.startsWith("/")) {
     return (
       <NextLink href={href} passHref>
-        <ChakraLink color="soul.pink.200">{children}</ChakraLink>
+        <ChakraLink color="soul.pink.200" {...commonProps}>
+          {children}
+        </ChakraLink>
       </NextLink>
     );
   }
 
   return (
-    <ChakraLink href={href} target="_blank" color="soul.pink.light">
+    <ChakraLink
+      href={href}
+      target="_blank"
+      color="soul.pink.light"
+      {...commonProps}
+    >
       {children}
     </ChakraLink>
   );
