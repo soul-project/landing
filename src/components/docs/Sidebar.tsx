@@ -31,7 +31,7 @@ export default function Sidebar({ currentDocId }: Props) {
         ))}
         <Divider />
         <DocLink
-          href="https://api.soul-network.com/docs"
+          href="https://soul.readme.io/reference"
           label="API References"
         />
       </VStack>
