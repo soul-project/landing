@@ -31,10 +31,6 @@ export default function useFcm() {
   } | null>(null);
   useEffect(() => {
     if (typeof window !== undefined && firebaseConfig.apiKey) {
-      console.log(
-        "🚀 ~ file: useFCM.ts ~ line 34 ~ useEffect ~ firebaseConfig.apiKey",
-        firebaseConfig
-      );
       const init = async () => {
         const token = await initializeFCM(app);
         setFcmSession(token);
