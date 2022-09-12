@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ChakraProvider, CSSReset } from "@chakra-ui/react";
+import { ChakraProvider, CSSReset, useToast } from "@chakra-ui/react";
 import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
@@ -7,9 +7,11 @@ import NextNProgress from "nextjs-progressbar";
 import { initializeApp } from "firebase/app";
 import { initializeAnalytics } from "firebase/analytics";
 import { initializePerformance } from "firebase/performance";
+import { onMessage } from "firebase/messaging";
 
 import theme from "src/theme";
 import "src/styles/prism-one-dark.css";
+import useFcm from "src/hooks/useFCM";
 
 import { firebaseConfig } from "../config/firebaseConfig";
 
@@ -18,6 +20,7 @@ function MyApp({
   pageProps: { session, dehydratedState, ...pageProps },
 }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
+  const toast = useToast();
 
   useEffect(() => {
     if (typeof window !== undefined && firebaseConfig.apiKey) {
@@ -26,6 +29,18 @@ function MyApp({
       initializePerformance(app);
     }
   }, []);
+
+  const fcmSession = useFcm();
+
+  // TODO: Test out FCM and see if it works with using firebase console to send notifications
+  useEffect(() => {
+    if (fcmSession) {
+      const { messaging } = fcmSession;
+      onMessage(messaging, (message) => {
+        toast({ title: message.notification?.title });
+      });
+    }
+  }, [fcmSession, toast]);
 
   return (
     <SessionProvider session={session}>
