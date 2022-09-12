@@ -23,7 +23,11 @@ function MyApp({
   const toast = useToast();
 
   useEffect(() => {
-    if (typeof window !== undefined && firebaseConfig.apiKey) {
+    if (
+      typeof window !== undefined &&
+      firebaseConfig.apiKey &&
+      process.env.NODE_ENV === "production"
+    ) {
       const app = initializeApp(firebaseConfig);
       initializeAnalytics(app);
       initializePerformance(app);
@@ -32,7 +36,6 @@ function MyApp({
 
   const fcmSession = useFcm();
 
-  // TODO: Test out FCM and see if it works with using firebase console to send notifications
   useEffect(() => {
     if (fcmSession) {
       const { messaging } = fcmSession;

@@ -1,11 +1,13 @@
+/* eslint-disable @cspell/spellchecker */
 export const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSENGER_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+  apiKey: "AIzaSyAMTwsyhJNTaGfQvuOi8NKGB7iYluPaSuA",
+  authDomain: "soul-72472.firebaseapp.com",
+  projectId: "soul-72472",
+  storageBucket: "soul-72472.appspot.com",
+  messagingSenderId: "320606596886",
+  appId: "1:320606596886:web:e04e056b3c028fa9da6a37",
+  measurementId: "G-LG017PPHCW",
 };
 
-export const VAPID_KEY = process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY;
+export const VAPID_KEY =
+  "BOzlnAznoZ3sn_UngrYfojxh_4I4ohoi9kwDleEh1I-tAQHZsgnR5MCkvUoLElPpqU3NDtETVX6ofEzzQHfvzfk";
