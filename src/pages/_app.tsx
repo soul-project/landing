@@ -40,7 +40,14 @@ function MyApp({
     if (fcmSession) {
       const { messaging } = fcmSession;
       onMessage(messaging, (message) => {
-        toast({ title: message.notification?.title });
+        toast({
+          title: message.notification?.title,
+          description: message.notification?.body,
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+          position: "bottom-right",
+        });
       });
     }
   }, [fcmSession, toast]);
