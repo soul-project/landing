@@ -1,6 +1,10 @@
 import { cert, initializeApp, getApp } from "firebase-admin/app";
 
 export function getFirebaseAdminApp() {
+  console.log(process.env.FIREBASE_PRIVATE_KEY);
+  console.log(process.env.FIREBASE_PROJECT_ID);
+  console.log(process.env.FIREBASE_CLIENT_EMAIL);
+
   let firebaseAdminApp;
   try {
     firebaseAdminApp = getApp();
