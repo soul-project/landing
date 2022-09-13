@@ -26,7 +26,7 @@ function FCMWrapper({ children }: React.PropsWithChildren<{}>) {
         toast({
           title: message.notification?.title,
           description: message.notification?.body,
-          status: "success",
+          status: "info",
           duration: 9000,
           isClosable: true,
           position: "bottom-right",
