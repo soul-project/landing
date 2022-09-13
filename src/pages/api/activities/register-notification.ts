@@ -21,11 +21,11 @@ export default async function handler(
       return res.status(StatusCodes.BAD_REQUEST).json({});
     }
 
-    // TODO: Test to see if this works
     const db = getFirestore(firebaseAdminApp);
     const ref = db.collection(`fcm_tokens/users/${session.user.id}`);
 
     ref.add({ fcm_token: req.body.fcm_token });
+    // TODO: Remove duplicates or make sure we don't add again
 
     return res.status(StatusCodes.OK).json({});
   }

@@ -15,25 +15,8 @@ import useFcm from "src/hooks/useFCM";
 
 import { firebaseConfig } from "../config/firebaseConfig";
 
-function MyApp({
-  Component,
-  pageProps: { session, dehydratedState, ...pageProps },
-}: AppProps) {
-  const [queryClient] = useState(() => new QueryClient());
+function FCMWrapper({ children }: React.PropsWithChildren<{}>) {
   const toast = useToast();
-
-  useEffect(() => {
-    if (
-      typeof window !== undefined &&
-      firebaseConfig.apiKey &&
-      process.env.NODE_ENV === "production"
-    ) {
-      const app = initializeApp(firebaseConfig);
-      initializeAnalytics(app);
-      initializePerformance(app);
-    }
-  }, []);
-
   const fcmSession = useFcm();
 
   useEffect(() => {
@@ -52,6 +35,27 @@ function MyApp({
     }
   }, [fcmSession, toast]);
 
+  return <>{children}</>;
+}
+
+function MyApp({
+  Component,
+  pageProps: { session, dehydratedState, ...pageProps },
+}: AppProps) {
+  const [queryClient] = useState(() => new QueryClient());
+
+  useEffect(() => {
+    if (
+      typeof window !== undefined &&
+      firebaseConfig.apiKey &&
+      process.env.NODE_ENV === "production"
+    ) {
+      const app = initializeApp(firebaseConfig);
+      initializeAnalytics(app);
+      initializePerformance(app);
+    }
+  }, []);
+
   return (
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
@@ -62,7 +66,9 @@ function MyApp({
               color="var(--chakra-colors-soul-pink-200)"
               options={{ showSpinner: false }}
             />
-            <Component {...pageProps} />
+            <FCMWrapper>
+              <Component {...pageProps} />
+            </FCMWrapper>
           </ChakraProvider>
         </Hydrate>
       </QueryClientProvider>

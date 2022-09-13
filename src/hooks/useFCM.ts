@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { getMessaging, getToken, Messaging } from "firebase/messaging";
+import { useMutation } from "react-query";
+import { Session } from "@sentry/nextjs";
 
 import { firebaseConfig, VAPID_KEY } from "src/config/firebaseConfig";
+import {
+  registerNotification,
+  RegisterNotificationArgs,
+} from "src/modules/activities/actions";
 
 export async function initializeFCM(app: FirebaseApp) {
   try {
@@ -24,25 +30,29 @@ export async function initializeFCM(app: FirebaseApp) {
   return null;
 }
 
-// TODO: Add user id and wait for log in before initializing this
-export default function useFcm() {
+export default function useFcm(session?: Session) {
   const [fcmSession, setFcmSession] = useState<{
     token: string;
     messaging: Messaging;
   } | null>(null);
+
+  const { mutate } = useMutation<any, void, RegisterNotificationArgs>((args) =>
+    registerNotification(args)
+  );
   useEffect(() => {
     if (typeof window !== undefined && firebaseConfig.apiKey) {
       const app = initializeApp(firebaseConfig);
       const init = async () => {
-        const token = await initializeFCM(app);
-        setFcmSession(token);
-        // Also upload the token to firebase for storage using nextjs api
-        // TODO: Create a new endpoint for the firebase admin sdk
+        const session = await initializeFCM(app);
+        if (session) {
+          setFcmSession(session);
+          mutate({ fcmToken: session?.token });
+        }
       };
 
       init();
     }
-  }, []);
+  }, [mutate, session]);
 
   return fcmSession;
 }
