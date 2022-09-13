@@ -27,8 +27,8 @@ export default async function handler(
     const result = await messaging.sendMulticast({
       tokens,
       notification: {
-        title: "New follow",
-        body: `You have a new follower: ${body.to_user.username}`,
+        title: "🍻 You have a new follower!",
+        body: `${body.to_user.username} followed you 🎉`,
       },
     });
 
