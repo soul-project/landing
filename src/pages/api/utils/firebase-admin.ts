@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { cert, initializeApp, getApp } from "firebase-admin/app";
 
 export function getFirebaseAdminApp() {
