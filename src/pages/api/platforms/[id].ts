@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import { unstable_getServerSession } from "next-auth/next";
+import { StatusCodes } from "http-status-codes";
 
 import { authOptions } from "../auth/[...nextauth]";
 
@@ -50,5 +51,5 @@ export default async function handler(
     return res.status(status).json(data);
   }
 
-  return res.status(404).json({});
+  return res.status(StatusCodes.NOT_FOUND).json({});
 }

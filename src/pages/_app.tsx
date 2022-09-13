@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ChakraProvider, CSSReset } from "@chakra-ui/react";
+import { ChakraProvider, CSSReset, useToast } from "@chakra-ui/react";
 import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
@@ -7,11 +7,36 @@ import NextNProgress from "nextjs-progressbar";
 import { initializeApp } from "firebase/app";
 import { initializeAnalytics } from "firebase/analytics";
 import { initializePerformance } from "firebase/performance";
+import { onMessage } from "firebase/messaging";
 
 import theme from "src/theme";
 import "src/styles/prism-one-dark.css";
+import useFcm from "src/hooks/useFCM";
 
-import { firebaseConfig } from "../config/firebaseConfig";
+import { FIREBASE_APP_CONFIG } from "../config/firebaseConfig";
+
+function FCMWrapper({ children }: React.PropsWithChildren<{}>) {
+  const toast = useToast();
+  const fcmSession = useFcm();
+
+  useEffect(() => {
+    if (fcmSession) {
+      const { messaging } = fcmSession;
+      onMessage(messaging, (message) => {
+        toast({
+          title: message.notification?.title,
+          description: message.notification?.body,
+          status: "info",
+          duration: 9000,
+          isClosable: true,
+          position: "bottom-right",
+        });
+      });
+    }
+  }, [fcmSession, toast]);
+
+  return <>{children}</>;
+}
 
 function MyApp({
   Component,
@@ -20,8 +45,12 @@ function MyApp({
   const [queryClient] = useState(() => new QueryClient());
 
   useEffect(() => {
-    if (typeof window !== undefined && firebaseConfig.apiKey) {
-      const app = initializeApp(firebaseConfig);
+    if (
+      typeof window !== undefined &&
+      FIREBASE_APP_CONFIG.apiKey &&
+      process.env.NODE_ENV === "production"
+    ) {
+      const app = initializeApp(FIREBASE_APP_CONFIG);
       initializeAnalytics(app);
       initializePerformance(app);
     }
@@ -37,7 +66,9 @@ function MyApp({
               color="var(--chakra-colors-soul-pink-200)"
               options={{ showSpinner: false }}
             />
-            <Component {...pageProps} />
+            <FCMWrapper>
+              <Component {...pageProps} />
+            </FCMWrapper>
           </ChakraProvider>
         </Hydrate>
       </QueryClientProvider>
