@@ -46,7 +46,7 @@ export default function useFcm(session?: Session) {
         const session = await initializeFCM(app);
         if (session) {
           setFcmSession(session);
-          mutate({ fcmToken: session?.token });
+          mutate({ fcmToken: session.token });
         }
       };
 
