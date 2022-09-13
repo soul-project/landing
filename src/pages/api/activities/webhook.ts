@@ -28,7 +28,7 @@ export default async function handler(
       tokens,
       notification: {
         title: "🍻 You have a new follower!",
-        body: `${body.to_user.username} followed you 🎉`,
+        body: `${body.from_user.username} followed you 🎉`,
       },
     });
 
