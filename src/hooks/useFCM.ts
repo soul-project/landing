@@ -24,6 +24,7 @@ export async function initializeFCM(app: FirebaseApp) {
   return null;
 }
 
+// TODO: Add user id and wait for log in before initializing this
 export default function useFcm() {
   const [fcmSession, setFcmSession] = useState<{
     token: string;
@@ -31,12 +32,14 @@ export default function useFcm() {
   } | null>(null);
   useEffect(() => {
     if (typeof window !== undefined && firebaseConfig.apiKey) {
+      const app = initializeApp(firebaseConfig);
       const init = async () => {
         const token = await initializeFCM(app);
         setFcmSession(token);
+        // Also upload the token to firebase for storage using nextjs api
+        // TODO: Create a new endpoint for the firebase admin sdk
       };
 
-      const app = initializeApp(firebaseConfig);
       init();
     }
   }, []);
