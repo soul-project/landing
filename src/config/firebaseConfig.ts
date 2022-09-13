@@ -1,5 +1,5 @@
 /* eslint-disable @cspell/spellchecker */
-export const firebaseConfig = {
+export const FIREBASE_APP_CONFIG = {
   apiKey: "AIzaSyAMTwsyhJNTaGfQvuOi8NKGB7iYluPaSuA",
   authDomain: "soul-72472.firebaseapp.com",
   projectId: "soul-72472",

@@ -4,7 +4,7 @@ import { getMessaging, getToken, Messaging } from "firebase/messaging";
 import { useMutation } from "react-query";
 import { Session } from "@sentry/nextjs";
 
-import { firebaseConfig, VAPID_KEY } from "src/config/firebaseConfig";
+import { FIREBASE_APP_CONFIG, VAPID_KEY } from "src/config/firebaseConfig";
 import {
   registerNotification,
   RegisterNotificationArgs,
@@ -40,8 +40,8 @@ export default function useFcm(session?: Session) {
     registerNotification(args)
   );
   useEffect(() => {
-    if (typeof window !== undefined && firebaseConfig.apiKey) {
-      const app = initializeApp(firebaseConfig);
+    if (typeof window !== undefined && FIREBASE_APP_CONFIG.apiKey) {
+      const app = initializeApp(FIREBASE_APP_CONFIG);
       const init = async () => {
         const session = await initializeFCM(app);
         if (session) {

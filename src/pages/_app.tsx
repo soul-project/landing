@@ -13,7 +13,7 @@ import theme from "src/theme";
 import "src/styles/prism-one-dark.css";
 import useFcm from "src/hooks/useFCM";
 
-import { firebaseConfig } from "../config/firebaseConfig";
+import { FIREBASE_APP_CONFIG } from "../config/firebaseConfig";
 
 function FCMWrapper({ children }: React.PropsWithChildren<{}>) {
   const toast = useToast();
@@ -47,10 +47,10 @@ function MyApp({
   useEffect(() => {
     if (
       typeof window !== undefined &&
-      firebaseConfig.apiKey &&
+      FIREBASE_APP_CONFIG.apiKey &&
       process.env.NODE_ENV === "production"
     ) {
-      const app = initializeApp(firebaseConfig);
+      const app = initializeApp(FIREBASE_APP_CONFIG);
       initializeAnalytics(app);
       initializePerformance(app);
     }
