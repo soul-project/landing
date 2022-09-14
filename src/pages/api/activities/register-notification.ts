@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { unstable_getServerSession } from "next-auth/next";
 import { getFirestore } from "firebase-admin/firestore";
 import { StatusCodes } from "http-status-codes";
+import { getToken } from "next-auth/jwt";
 
-import { authOptions } from "../auth/[...nextauth]";
 import { getFirebaseAdminApp } from "../utils/firebase-admin";
 
 export default async function handler(
@@ -12,7 +11,7 @@ export default async function handler(
 ) {
   const firebaseAdminApp = getFirebaseAdminApp();
   if (req.method === "POST") {
-    const session = await unstable_getServerSession(req, res, authOptions);
+    const session = await getToken({ req });
 
     if (!session) {
       return res.status(StatusCodes.UNAUTHORIZED).json({});
