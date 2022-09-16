@@ -9,6 +9,7 @@ export default function Head({ subTitle }: Props) {
         content="Soul, an identity provider for a federated social media eco-system."
       />
       <link rel="icon" href="/favicon.ico" />
+      <meta httpEquiv="refresh" content="1900" />
     </NextHead>
   );
 }
