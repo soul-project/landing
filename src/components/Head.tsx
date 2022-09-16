@@ -8,7 +8,8 @@ export default function Head({ subTitle }: Props) {
         name="description"
         content="Soul, an identity provider for a federated social media eco-system."
       />
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/soul-2.svg" />
+      <meta httpEquiv="refresh" content="1900" />
     </NextHead>
   );
 }
