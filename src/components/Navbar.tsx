@@ -18,12 +18,6 @@ export default function Navbar() {
           <Link>Home</Link>
         </NextLink>
 
-        {!!session && (
-          <NextLink passHref href="/my-platforms">
-            <Link>Platforms</Link>
-          </NextLink>
-        )}
-
         <NextLink passHref href="/docs/getting-started">
           <Link>Docs</Link>
         </NextLink>

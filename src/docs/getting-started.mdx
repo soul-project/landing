@@ -36,54 +36,23 @@ First, [register an account with us](https://login.soul-network.com/register) if
 
 ### Retrieving my account information
 
-To retrieve more information about your account, you can use the following endpoint
-
-```bash
-curl --location --request GET 'https://api.soul-network.com/v1/users/me' \
---header 'Authorization: Bearer <ACCESS_TOKEN>' \
---header 'Content-Type: application/json'
-```
+To retrieve more information about your account, you can use the [retrieve myself endpoint](https://soul.readme.io/reference/userscontroller_findme).
 
 ### Account customization
 
-You can also customize your account by using the following endpoint
-
-> Your access token is automatically populated if you have logged in to this site with your account. Please change the `username` and `email` fields
-> accordingly.
-
-```bash
-curl --location --request PATCH 'https://api.soul-network.com/v1/users/me' \
---header 'Authorization: Bearer <ACCESS_TOKEN>' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "username": "<YOUR_NEW_USERNAME>",
-    "email": "<YOUR_NEW_EMAIL>"
-}'
-```
+You can also customize your account by using the [patch myself endpoint](https://soul.readme.io/reference/userscontroller_updateme).
 
 ## Create a new platform
 
-Create a new platform by navigating over to the [platforms page](/my-platforms) and clicking the "+" button. Fill up the form
-and specify a valid redirect uri such as `http://localhost:3000` for local development.
+Create a new platform by using the [create platform endpoint](https://soul.readme.io/reference/platformscontroller_create)
+and fill up the necessary details.
+
+> Note that a valid redirect uri has to be specified, you may use `http://localhost:3000` for local development. This redirect uri will be used
+> for logging users in to your platform.
 
 ### Platform customization
 
-You can customize your platform by using the following endpoint
-
-> Your access token is automatically populated if you have logged in to this site with your account.
-
-```bash
-curl --location --request PATCH 'https://api.soul-network.com/v1/platforms/<YOUR_PLATFORM_ID>' \
---header 'Authorization: Bearer <ACCESS_TOKEN>' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "name": "<YOUR_NEW_PLATFORM_NAME>",
-    "redirect_uris": ["<LIST_OF_REDIRECT_URIS>"]
-}'
-```
-
-> Redirect uris must be in a valid format as defined by
-> https://docs.microsoft.com/en-us/azure/active-directory/develop/reply-url
+You can customize your platform by using the [update platform endpoint](https://soul.readme.io/reference/platformscontroller_update).
 
 ## Integrate with your own project
 
