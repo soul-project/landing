@@ -34,7 +34,12 @@ export default function AccessTokenModal({ isOpen, onClose }: Props) {
               contentEditable={false}
             />
             <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size="sm" onClick={onCopy}>
+              <Button
+                h="1.75rem"
+                size="sm"
+                onClick={onCopy}
+                color={hasCopied ? "soul.green.200" : undefined}
+              >
                 {hasCopied ? <CheckIcon /> : <CopyIcon />}
               </Button>
             </InputRightElement>
