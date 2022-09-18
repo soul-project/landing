@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Box, Stack, useDisclosure } from "@chakra-ui/react";
 import { signOut, useSession } from "next-auth/react";
 import { NextPage } from "next";
@@ -10,11 +10,15 @@ import Page from "src/components/Page";
 import CTAContent from "src/components/index/CTAContent";
 import Navbar from "src/components/Navbar";
 import AccessTokenModal from "src/components/index/AccessTokenModal";
+import { POSITIVE_EMOJIS } from "src/components/constants";
 
 import Logo from "../../public/logo.png";
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
+  const [loginEmoji, setLoginEmoji] = useState(
+    POSITIVE_EMOJIS[Math.floor(Math.random() * POSITIVE_EMOJIS.length)]
+  );
   const {
     isOpen: isAccessTokenModalOpen,
     onOpen: onOpenAccessTokenModal,
@@ -26,6 +30,12 @@ const Home: NextPage = () => {
       signOut();
     }
   }, [session]);
+
+  useEffect(() => {
+    setLoginEmoji(
+      POSITIVE_EMOJIS[Math.floor(Math.random() * POSITIVE_EMOJIS.length)]
+    );
+  }, []);
 
   return (
     <>
@@ -49,6 +59,7 @@ const Home: NextPage = () => {
               <CTAContent
                 username={session?.user.username}
                 onShowAccessTokenModal={onOpenAccessTokenModal}
+                loginEmoji={loginEmoji}
               />
             </Stack>
 
