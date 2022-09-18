@@ -1,9 +1,11 @@
+import { LockIcon } from "@chakra-ui/icons";
 import { Button, Text, Link, Box, Stack } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 export default function CTAContent({
   username,
   onShowAccessTokenModal,
+  loginEmoji,
 }: Props) {
   return (
     <>
@@ -22,7 +24,7 @@ export default function CTAContent({
             >
               {username}
             </Text>{" "}
-            ❤️
+            {loginEmoji}
           </>
         ) : (
           <>
@@ -74,7 +76,11 @@ export default function CTAContent({
           </Link>
         </NextLink>
         {username && (
-          <Button type="button" onClick={onShowAccessTokenModal}>
+          <Button
+            type="button"
+            onClick={onShowAccessTokenModal}
+            leftIcon={<LockIcon />}
+          >
             Access Token
           </Button>
         )}
@@ -86,4 +92,5 @@ export default function CTAContent({
 type Props = {
   username?: string;
   onShowAccessTokenModal: () => void;
+  loginEmoji: string;
 };
