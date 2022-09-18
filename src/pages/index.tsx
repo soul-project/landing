@@ -37,7 +37,7 @@ const Home: NextPage = () => {
       )}
       <Head />
       <Page>
-        <Navbar />
+        <Navbar hideAccessTokenButton />
         {status !== "loading" && (
           <Stack
             justifyContent="center"
