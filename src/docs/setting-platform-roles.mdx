@@ -18,12 +18,6 @@ Soul uses role-based access control to define who has access to configure the pl
 
 ## Setting a user role
 
-Admins can set user roles for a specific user by making use of the `/platforms` endpoint.
-A list of roles (separated by commas) can be specified for a specific user.
-
-```bash
-curl --location --request PUT 'https://api.soul-network.com/v1/platforms/<YOUR_PLATFORM_ID>/users/<TARGET_USER_ID>?roles=admin,member' \
---header 'Authorization: Bearer <ACCESS_TOKEN>'
-```
-
-> Make sure to replace `YOUR_PLATFORM_ID` and `TARGET_USER_ID` placeholders with your intended paramters.
+Admins can set user roles for a specific user by making use of the
+[set role for user endpoint](https://soul.readme.io/reference/platformscontroller_setplatformuserrole).
+A list of roles (separated by commas) can be specified for a specific user to set his/her role.
