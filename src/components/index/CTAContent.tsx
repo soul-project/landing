@@ -77,7 +77,7 @@ export default function CTAContent({
             {username ? (
               <Button
                 type="button"
-                bg="soul.pink.light"
+                bg="soul.pink.200"
                 _hover={{ bg: "soul.pink.dark" }}
                 _active={{ bg: "soul.pink.dark" }}
               >
