@@ -10,7 +10,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { LockIcon } from "@chakra-ui/icons";
 import Image from "next/image";
 
-import Logo from "../../public/soul.svg";
+import Logo from "../../public/soul-gradient.svg";
 
 import AccessTokenModal from "./index/AccessTokenModal";
 
@@ -40,7 +40,13 @@ export default function Navbar({ hideAccessTokenButton }: Props) {
         <HStack spacing="16px">
           <NextLink passHref href="/">
             <Link>
-              <Image src={Logo} alt="Soul logo" height={40} width={40} />
+              <Image
+                src={Logo}
+                alt="Soul logo"
+                height={40}
+                width={40}
+                priority
+              />
             </Link>
           </NextLink>
 
