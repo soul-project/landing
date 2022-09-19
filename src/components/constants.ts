@@ -1,1 +1,12 @@
-export const POSITIVE_EMOJIS = ["🎉", "❤️", "🚀", "🔥", "🍻", "🦕", "👏", "👾"];
+export const POSITIVE_EMOJIS = [
+  "🎉",
+  "❤️",
+  "🚀",
+  "🔥",
+  "🍻",
+  "👏",
+  "👾",
+  "😊",
+  "🐱",
+  "🥳",
+];
