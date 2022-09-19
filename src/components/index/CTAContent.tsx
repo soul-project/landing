@@ -1,5 +1,5 @@
 import { LockIcon } from "@chakra-ui/icons";
-import { Button, Text, Link, Box, Stack } from "@chakra-ui/react";
+import { Button, Text, Link, Box, Stack, Flex } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 export default function CTAContent({
@@ -7,13 +7,11 @@ export default function CTAContent({
   onShowAccessTokenModal,
   loginEmoji,
 }: Props) {
+  // TODO: add a background image / gradient or animation
   return (
-    <>
-      <Box
-        fontSize="4xl"
-        fontWeight="bold"
-        textAlign={["center", "center", "left"]}
-      >
+    <Flex direction="column" alignItems="center">
+      {/* TODO: Change a better font */}
+      <Box fontSize={["4xl", "5xl"]} fontWeight="bold" textAlign="center">
         {username ? (
           <>
             Hello,{" "}
@@ -39,21 +37,23 @@ export default function CTAContent({
           </>
         )}
       </Box>
-      {username ? (
-        <Text maxW="500px" textAlign={["center", "center", "left"]}>
-          Soul is a user authentication and identity provider built for a
-          federated social media eco-system 🤲. We&apos;ll be in touch with you
-          shortly. In the meantime, check out our docs by clicking on{" "}
-          <strong>&quot;Get started!&quot;</strong> button below.
-        </Text>
-      ) : (
-        <Text maxW="500px" textAlign={["center", "center", "left"]}>
-          Soul is a user authentication and identity provider built for a
-          federated social media eco-system 🤲. <strong>Join us</strong> now by
-          registering, and we&apos;ll keep in touch via email.
-        </Text>
-      )}
-      <Stack direction="row" justifyContent={["center", "center", "left"]}>
+      <Box fontSize="xl" maxW="600px" textAlign="center" mt="2rem">
+        {username ? (
+          <Text>
+            Soul is a user authentication and identity provider built for a
+            federated social media eco-system 🤲. We&apos;ll be in touch with
+            you shortly. In the meantime, check out our docs by clicking on{" "}
+            <strong>&quot;Get started!&quot;</strong> button below.
+          </Text>
+        ) : (
+          <Text>
+            Soul is a user authentication and identity provider built for a
+            federated social media eco-system 🤲. <strong>Join us</strong> now
+            by registering, and we&apos;ll keep in touch via email.
+          </Text>
+        )}
+      </Box>
+      <Stack direction="row" justifyContent="center" mt="3rem">
         {!username && (
           <Link
             href="https://login.soul-network.com/register"
@@ -85,7 +85,7 @@ export default function CTAContent({
           </Button>
         )}
       </Stack>
-    </>
+    </Flex>
   );
 }
 

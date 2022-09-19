@@ -8,6 +8,9 @@ import {
 } from "@chakra-ui/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { LockIcon } from "@chakra-ui/icons";
+import Image from "next/image";
+
+import Logo from "../../public/soul.svg";
 
 import AccessTokenModal from "./index/AccessTokenModal";
 
@@ -36,7 +39,9 @@ export default function Navbar({ hideAccessTokenButton }: Props) {
       >
         <HStack spacing="16px">
           <NextLink passHref href="/">
-            <Link>Home</Link>
+            <Link>
+              <Image src={Logo} alt="Soul logo" height={40} width={40} />
+            </Link>
           </NextLink>
 
           <NextLink passHref href="/docs/getting-started">
