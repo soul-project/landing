@@ -8,6 +8,7 @@ import { initializeApp } from "firebase/app";
 import { initializeAnalytics } from "firebase/analytics";
 import { initializePerformance } from "firebase/performance";
 import { onMessage } from "firebase/messaging";
+import "@fontsource/snippet";
 
 import theme from "src/theme";
 import "src/styles/prism-one-dark.css";

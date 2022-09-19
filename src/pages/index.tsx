@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { Box, Stack, useDisclosure } from "@chakra-ui/react";
+import { Stack, useDisclosure } from "@chakra-ui/react";
 import { signOut, useSession } from "next-auth/react";
 import { NextPage } from "next";
-import Image from "next/image";
 
 import Footer from "src/components/Footer";
 import Head from "src/components/Head";
@@ -11,8 +10,6 @@ import CTAContent from "src/components/index/CTAContent";
 import Navbar from "src/components/Navbar";
 import AccessTokenModal from "src/components/index/AccessTokenModal";
 import { POSITIVE_EMOJIS } from "src/components/constants";
-
-import Logo from "../../public/logo.png";
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
@@ -55,21 +52,13 @@ const Home: NextPage = () => {
             direction="row"
             margin={["auto auto", "auto auto", "auto 0"]}
           >
-            <Stack flex="1 1 0" direction="column" spacing={4}>
+            <Stack direction="column" spacing={4} alignItems="center">
               <CTAContent
                 username={session?.user.username}
                 onShowAccessTokenModal={onOpenAccessTokenModal}
                 loginEmoji={loginEmoji}
               />
             </Stack>
-
-            <Box
-              flex="1 1 0"
-              display={["none", "none", "inline-block"]}
-              maxWidth="620px"
-            >
-              <Image src={Logo} alt="Soul Logo" placeholder="blur" />
-            </Box>
           </Stack>
         )}
       </Page>
