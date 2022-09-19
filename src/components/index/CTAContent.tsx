@@ -27,9 +27,11 @@ export default function CTAContent({
         ) : (
           <>
             <Text
-              color="soul.blue"
+              color="soul.pink.light"
               display="inline-block"
               textDecoration="underline"
+              fontFamily="Snippet"
+              fontWeight="900"
             >
               Start your journey
             </Text>{" "}
