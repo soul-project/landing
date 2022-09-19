@@ -1,6 +1,9 @@
 import { extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
+  fonts: {
+    Snippet: `'Snippet', Snippet`,
+  },
   colors: {
     soul: {
       pink: {

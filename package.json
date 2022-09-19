@@ -16,6 +16,7 @@
     "@chakra-ui/react": "^2.2.1",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@fontsource/snippet": "^4.5.7",
     "@sentry/nextjs": "^7.13.0",
     "axios": "^0.27.2",
     "contentlayer": "^0.2.7",

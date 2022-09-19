@@ -7,14 +7,14 @@ export default function CTAContent({
   onShowAccessTokenModal,
   loginEmoji,
 }: Props) {
-  // TODO: add a background image / gradient or animation
   return (
     <Flex direction="column" alignItems="center">
-      {/* TODO: Change a better font */}
       <Box fontSize={["4xl", "5xl"]} fontWeight="bold" textAlign="center">
         {username ? (
           <>
-            Hello,{" "}
+            <Text fontFamily="Snippet" fontWeight="900" display="inline">
+              Hello,{" "}
+            </Text>
             <Text
               color="soul.blue"
               display="inline-block"
