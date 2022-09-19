@@ -74,7 +74,18 @@ export default function CTAContent({
         )}
         <NextLink passHref href="/docs/getting-started">
           <Link _hover={{ textDecoration: "initial" }} display="inline-block">
-            <Button type="button">Get started!</Button>
+            {username ? (
+              <Button
+                type="button"
+                bg="soul.pink.200"
+                _hover={{ bg: "soul.pink.dark" }}
+                _active={{ bg: "soul.pink.dark" }}
+              >
+                Get started!
+              </Button>
+            ) : (
+              <Button type="button">Get started!</Button>
+            )}
           </Link>
         </NextLink>
         {username && (
