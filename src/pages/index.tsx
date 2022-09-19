@@ -50,7 +50,8 @@ const Home: NextPage = () => {
             justifyContent="center"
             alignItems="center"
             direction="row"
-            margin={["auto auto", "auto auto", "auto 0"]}
+            mx={["auto", "auto", "0"]}
+            mt="180px"
           >
             <Stack direction="column" spacing={4} alignItems="center">
               <CTAContent
