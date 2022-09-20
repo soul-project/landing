@@ -6,6 +6,7 @@ export default function CTAContent({
   username,
   onShowAccessTokenModal,
   loginEmoji,
+  onRandomizeLoginEmoji,
 }: Props) {
   return (
     <Flex direction="column" alignItems="center">
@@ -22,7 +23,9 @@ export default function CTAContent({
             >
               {username}
             </Text>{" "}
-            {loginEmoji}
+            <Box as="button" onClick={onRandomizeLoginEmoji}>
+              {loginEmoji}
+            </Box>
           </>
         ) : (
           <>
@@ -30,8 +33,6 @@ export default function CTAContent({
               color="soul.pink.light"
               display="inline-block"
               textDecoration="underline"
-              fontFamily="Snippet"
-              fontWeight="900"
             >
               Start your journey
             </Text>{" "}
@@ -106,4 +107,5 @@ type Props = {
   username?: string;
   onShowAccessTokenModal: () => void;
   loginEmoji: string;
+  onRandomizeLoginEmoji: () => void;
 };
