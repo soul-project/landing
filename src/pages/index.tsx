@@ -54,7 +54,9 @@ const Home: NextPage = () => {
                 username={session?.user.username}
                 onShowAccessTokenModal={onOpenAccessTokenModal}
                 loginEmoji={loginEmoji}
-                onRandomizeLoginEmoji={() => setLoginEmoji(randomizeEmojis())}
+                onRandomizeLoginEmoji={() =>
+                  setLoginEmoji(randomizeEmojis(loginEmoji))
+                }
               />
             </Stack>
           </Stack>
@@ -67,6 +69,12 @@ const Home: NextPage = () => {
 
 export default Home;
 
-const randomizeEmojis = () => {
+const randomizeEmojis = (currentEmoji?: string) => {
+  if (currentEmoji) {
+    const filteredEmojis = [
+      ...POSITIVE_EMOJIS.filter((value) => value !== currentEmoji),
+    ];
+    return filteredEmojis[Math.floor(Math.random() * filteredEmojis.length)];
+  }
   return POSITIVE_EMOJIS[Math.floor(Math.random() * POSITIVE_EMOJIS.length)];
 };

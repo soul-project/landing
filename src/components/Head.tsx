@@ -6,7 +6,7 @@ export default function Head({ subTitle }: Props) {
       <title>{subTitle ? `${subTitle} | Soul` : "Soul"}</title>
       <meta
         name="description"
-        content="Soul, an identity provider for a federated social media eco-system."
+        content="Soul, an identity provider for a connected social media eco-system."
       />
       <link rel="icon" href="/soul.svg" />
       <meta httpEquiv="refresh" content="1900" />

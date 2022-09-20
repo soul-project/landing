@@ -44,14 +44,14 @@ export default function CTAContent({
         {username ? (
           <Text>
             Soul is a user authentication and identity provider built for a
-            federated social media eco-system 🤲. We&apos;ll be in touch with
+            connected social media eco-system 🤲. We&apos;ll be in touch with
             you shortly. In the meantime, check out our docs by clicking on{" "}
             <strong>&quot;Get started!&quot;</strong> button below.
           </Text>
         ) : (
           <Text>
             Soul is a user authentication and identity provider built for a
-            federated social media eco-system 🤲. <strong>Join us</strong> now
+            connected social media eco-system 🤲. <strong>Join us</strong> now
             by registering, and we&apos;ll keep in touch via email.
           </Text>
         )}
