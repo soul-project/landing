@@ -51,7 +51,7 @@ const Home: NextPage = () => {
             alignItems="center"
             direction="row"
             mx={["auto", "auto", "0"]}
-            mt="180px"
+            mt="15vh"
           >
             <Stack direction="column" spacing={4} alignItems="center">
               <CTAContent
