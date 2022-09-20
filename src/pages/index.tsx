@@ -13,9 +13,7 @@ import { POSITIVE_EMOJIS } from "src/components/constants";
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
-  const [loginEmoji, setLoginEmoji] = useState(
-    POSITIVE_EMOJIS[Math.floor(Math.random() * POSITIVE_EMOJIS.length)]
-  );
+  const [loginEmoji, setLoginEmoji] = useState(randomizeEmojis());
   const {
     isOpen: isAccessTokenModalOpen,
     onOpen: onOpenAccessTokenModal,
@@ -29,9 +27,7 @@ const Home: NextPage = () => {
   }, [session]);
 
   useEffect(() => {
-    setLoginEmoji(
-      POSITIVE_EMOJIS[Math.floor(Math.random() * POSITIVE_EMOJIS.length)]
-    );
+    setLoginEmoji(randomizeEmojis());
   }, []);
 
   return (
@@ -58,6 +54,7 @@ const Home: NextPage = () => {
                 username={session?.user.username}
                 onShowAccessTokenModal={onOpenAccessTokenModal}
                 loginEmoji={loginEmoji}
+                onRandomizeLoginEmoji={() => setLoginEmoji(randomizeEmojis())}
               />
             </Stack>
           </Stack>
@@ -69,3 +66,7 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+const randomizeEmojis = () => {
+  return POSITIVE_EMOJIS[Math.floor(Math.random() * POSITIVE_EMOJIS.length)];
+};
