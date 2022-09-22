@@ -20,6 +20,11 @@ export default function CTAContent({
               color="soul.blue"
               display="inline-block"
               textDecoration="underline"
+              whiteSpace="nowrap"
+              overflow="hidden"
+              textOverflow="ellipsis"
+              maxW="70vw"
+              verticalAlign="bottom"
             >
               {username}
             </Text>{" "}
