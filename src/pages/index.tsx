@@ -51,7 +51,7 @@ const Home: NextPage = () => {
           >
             <Stack direction="column" spacing={4} alignItems="center">
               <CTAContent
-                username={session?.user.username}
+                session={session}
                 onShowAccessTokenModal={onOpenAccessTokenModal}
                 loginEmoji={loginEmoji}
                 onRandomizeLoginEmoji={() =>
