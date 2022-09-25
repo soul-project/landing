@@ -2,7 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import axios from "axios";
 
-const CLIENT_ID = 17;
+const CLIENT_ID = 2;
 
 const getNewTokenFromServer = async (
   refreshToken: string
