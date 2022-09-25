@@ -2,7 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import axios from "axios";
 
-const CLIENT_ID = 2;
+const CLIENT_ID = 17;
 
 const getNewTokenFromServer = async (
   refreshToken: string
@@ -40,6 +40,8 @@ const getTokenWithLatestUserInfo = async (token: JWT): Promise<JWT> => {
       user_handle: string;
       email: string;
       is_active: boolean;
+      display_name: string | null;
+      bio: string | null;
     }>("https://api.soul-network.com/v1/users/me", {
       headers: { Authorization: `Bearer ${token.accessToken}` },
     });
@@ -52,6 +54,8 @@ const getTokenWithLatestUserInfo = async (token: JWT): Promise<JWT> => {
         userHandle: user.user_handle,
         email: user.email,
         isActive: user.is_active,
+        bio: user.bio,
+        displayName: user.display_name,
       },
     };
   } catch (_err) {
@@ -100,6 +104,8 @@ export const authOptions: NextAuthOptions = {
           isActive: profile.is_active,
           username: profile.username,
           userHandle: profile.user_handle,
+          bio: profile.bio || null,
+          displayName: profile.display_name || null,
         };
       },
     },

@@ -1,9 +1,10 @@
 import { LockIcon } from "@chakra-ui/icons";
 import { Button, Text, Link, Box, Stack, Flex } from "@chakra-ui/react";
+import { Session } from "next-auth";
 import NextLink from "next/link";
 
 export default function CTAContent({
-  username,
+  session,
   onShowAccessTokenModal,
   loginEmoji,
   onRandomizeLoginEmoji,
@@ -11,7 +12,7 @@ export default function CTAContent({
   return (
     <Flex direction="column" alignItems="center">
       <Box fontSize={["4xl", "5xl"]} fontWeight="bold" textAlign="center">
-        {username ? (
+        {session ? (
           <>
             <Text fontFamily="Snippet" fontWeight="900" display="inline">
               Hello,{" "}
@@ -26,7 +27,7 @@ export default function CTAContent({
               maxW="70vw"
               verticalAlign="bottom"
             >
-              {username}
+              {session?.user.displayName || session?.user.username}
             </Text>{" "}
             <Box as="button" onClick={onRandomizeLoginEmoji}>
               {loginEmoji}
@@ -46,7 +47,7 @@ export default function CTAContent({
         )}
       </Box>
       <Box fontSize="xl" maxW="600px" textAlign="center" mt="2rem">
-        {username ? (
+        {session ? (
           <Text>
             Soul is a user authentication and identity provider built for a
             connected social media eco-system 🤲. We&apos;ll be in touch with
@@ -62,7 +63,7 @@ export default function CTAContent({
         )}
       </Box>
       <Stack direction="row" justifyContent="center" mt="3rem">
-        {!username && (
+        {!session && (
           <Link
             href="https://login.soul-network.com/register"
             _hover={{ textDecoration: "initial" }}
@@ -80,7 +81,7 @@ export default function CTAContent({
         )}
         <NextLink passHref href="/docs/getting-started">
           <Link _hover={{ textDecoration: "initial" }} display="inline-block">
-            {username ? (
+            {session ? (
               <Button
                 type="button"
                 bg="soul.pink.200"
@@ -94,7 +95,7 @@ export default function CTAContent({
             )}
           </Link>
         </NextLink>
-        {username && (
+        {session && (
           <Button
             type="button"
             onClick={onShowAccessTokenModal}
@@ -109,7 +110,7 @@ export default function CTAContent({
 }
 
 type Props = {
-  username?: string;
+  session: Session | null;
   onShowAccessTokenModal: () => void;
   loginEmoji: string;
   onRandomizeLoginEmoji: () => void;
