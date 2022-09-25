@@ -27,7 +27,7 @@ export default function CTAContent({
               maxW="70vw"
               verticalAlign="bottom"
             >
-              {session?.user.displayName || session?.user.username}
+              {session.user.displayName || session.user.username}
             </Text>{" "}
             <Box as="button" onClick={onRandomizeLoginEmoji}>
               {loginEmoji}
