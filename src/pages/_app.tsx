@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ChakraProvider, CSSReset, useToast } from "@chakra-ui/react";
+import { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
@@ -42,7 +43,7 @@ function FCMWrapper({ children }: React.PropsWithChildren<{}>) {
 function MyApp({
   Component,
   pageProps: { session, dehydratedState, ...pageProps },
-}: AppProps) {
+}: AppProps<{ session: Session; dehydratedState: unknown }>) {
   const [queryClient] = useState(() => new QueryClient());
 
   useEffect(() => {
